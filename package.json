@@ -1,0 +1,15 @@
+{
+  "name": "elife",
+  "version": "0.1.0",
+  "description": "A Everlife Avatar Node",
+  "main": "index.js",
+  "author": "charles.lobo@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "elife-pkg-mgr": "everlifeai/elife-pkg-mgr",
+    "pm2": "^3.0.3"
+  }
+}
