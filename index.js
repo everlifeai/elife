@@ -60,6 +60,7 @@ function loadConfig() {
  *
  * TODO: Add and enable all core components
  * TODO: Monitoring and regulating component CPU/Memory/Disk usage
+ * TODO: Embed Redis for Queue Management
  */
 function startCoreProcesses(cfg) {
     const core_procs = [
