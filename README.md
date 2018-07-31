@@ -32,6 +32,9 @@ responsibility (after all - it has to *live forever*).
 
 
 ### Package Details
+
+![Everlife Architecture](elife.png)
+
 For this to work, it delegates all other work to different processes
 (a.l.a Erlang's supervisor trees).
 
