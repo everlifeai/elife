@@ -16,25 +16,35 @@ EOF
 
 NAME=elife
 
+#       problem/
+# Some of our repositories are privately hosted on github. These are not
+# accesible within the docker container.
+#
+#       way/
+# Share our local ~/.ssh/ folder into the docker container which allows
+# us to use our local credentials when connecting to github
+#
 function setup() {
-    echo Setting up docker for node...
-    docker pull node
-    echo Setting up node_modules...
+    echo Setting up everlife docker...
+    docker build -t everlifeai/elife .
+    echo Setting up node modules...
     docker run -it --rm \
         -v "$(pwd):/code" \
+        -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
-        node yarn install
+        everlifeai/elife bash
 }
 
 function avatar() {
     docker run -it --rm \
         -v "$(pwd):/code" \
+        -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
         -p "8997:8997" \
         --name "${NAME}" \
-        node yarn start
+        everlifeai/elife yarn start
 }
 
 function enter() {
