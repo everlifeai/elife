@@ -9,7 +9,9 @@
     "start": "node ."
   },
   "dependencies": {
+    "cote": "^0.17.0",
     "elife-pkg-mgr": "everlifeai/elife-pkg-mgr",
+    "elife-utils": "everlifeai/elife-utils",
     "pm2": "^3.0.3"
   }
 }
