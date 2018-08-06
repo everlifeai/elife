@@ -66,7 +66,7 @@ function startCoreProcesses(cfg) {
     const core_procs = [
         //{ pkg: "everlifeai/elife-sbot" },
         { pkg: "everlifeai/elife-level-db" },
-        //{ pkg: "everlifeai/elife-work-queue" },
+        { pkg: "everlifeai/elife-work-queue" },
         //{ pkg: "everlifeai/elife-skill-mgr" },
         //{ pkg: "everlifeai/elife-communication-mgr" },
         //{ pkg: "everlifeai/elife-ai" },
