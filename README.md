@@ -3,6 +3,32 @@
 This is the main Everlife.ai avatar node. It runs in a docker container
 and can be deployed on any VPS to run a standard avatar.
 
+
+## Setup
+The node runs in a docker container and will self download and install
+`redis` and the core packages.
+
+### Accessing Private Repositories
+Because we have multiple private repositories in
+[Everlife](https://github.com/everlifeai), in order to access them we
+need to authenticate ourselves.
+
+Needing to authenticate ourselves multiple times for multiple downloads
+and updates is tiresome so we use `ssh` access. If you can access Github-via-ssh
+[run.sh](https://github.com/everlifeai/elife/blob/2280f5ad77622bf362adc8edfc6201fb076aeb71/run.sh#L19)
+will automatically pick up the ssh settings and use them to download the
+repositories.
+
+
+### Steps to deploy
+
+- [Set up ssh access to Github](https://help.github.com/articles/connecting-to-github-with-ssh/)
+- Install Docker
+- `./run.sh setup` && `./run.sh avatar`
+
+And you're good to go!
+
+
 ## Quickstart
 ```sh
 $> run.sh <command>
@@ -29,6 +55,7 @@ This package itself can be thought of as the
 core of the avatar - it keeps the rest of the avatar (the AI brain, the
 immortal feed, the database etc) alive and stable. That is it's main
 responsibility (after all - it has to *live forever*).
+
 
 
 ### Package Details
