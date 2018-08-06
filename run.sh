@@ -33,7 +33,7 @@ function setup() {
         -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
-        everlifeai/elife bash
+        everlifeai/elife yarn install
 }
 
 function avatar() {
@@ -44,7 +44,17 @@ function avatar() {
         -e "HOME=/tmp" \
         -p "8997:8997" \
         --name "${NAME}" \
-        everlifeai/elife yarn start
+        everlifeai/elife ./run.sh cnt_start_avatar
+}
+
+function cnt_start_avatar() {
+    start_redis
+    sleep 10
+    yarn start
+}
+
+function start_redis() {
+    /root/redis-4.0.11/src/redis-server &
 }
 
 function enter() {
@@ -71,5 +81,6 @@ function else_show_help() {
 run_fn setup "$@"
 run_fn avatar "$@"
 run_fn enter "$@"
+run_fn cnt_start_avatar "$@"
 else_show_help
 

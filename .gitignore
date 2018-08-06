@@ -3,3 +3,4 @@ _tmp/
 node_modules/
 services/
 logs/
+*.rdb
