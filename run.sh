@@ -44,6 +44,7 @@ function avatar() {
         -e "HOME=/tmp" \
         -p "8997:8997" \
         --name "${NAME}" \
+        --env-file cfg.env \
         everlifeai/elife ./run.sh cnt_start_avatar
 }
 
