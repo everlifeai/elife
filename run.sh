@@ -42,6 +42,7 @@ function avatar() {
         -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
+        -e EVERLIFE_HOST_IP="$(ifconfig | grep 'inet '| grep -v 127.0.0.1 | awk '{print $2}')" \
         -p "8997:8997" \
         --name "${NAME}" \
         --env-file cfg.env \
