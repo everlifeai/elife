@@ -47,13 +47,13 @@ function setup() {
 # reason)
 #
 function setupDockerParams() {
-    EVERLIFE_HOST_IP=$(ifconfig | grep 'inet '| grep -v 127.0.0.1 | awk '{print $2}')
-    if [ -z "$EVERLIFE_HOST_PORT" ]
+    SSB_HOST=$(ifconfig | grep 'inet '| grep -v 127.0.0.1 | awk '{print $2}')
+    if [ -z "$SSB_PORT" ]
     then
         NAME="elife"
-        EVERLIFE_HOST_PORT="8997"
+        SSB_PORT="8997"
     else
-        NAME="elife-$EVERLIFE_HOST_PORT"
+        NAME="elife-$SSB_PORT"
     fi
 }
 
@@ -65,8 +65,9 @@ function avatar() {
         -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
-        -e EVERLIFE_HOST_IP="$EVERLIFE_HOST_IP" \
-        -p "$EVERLIFE_HOST_PORT:8997" \
+        -e SSB_HOST="$SSB_HOST" \
+        -e SSB_PORT="$SSB_PORT" \
+        -p "$SSB_PORT:$SSB_PORT" \
         --name "${NAME}" \
         --env-file cfg.env \
         everlifeai/elife ./run.sh cnt_start_avatar
