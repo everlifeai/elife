@@ -52,7 +52,10 @@ function setup() {
 # reason)
 #
 function setupDockerParams() {
-    SSB_HOST=$(ifconfig | grep 'inet '| grep -v 127.0.0.1 | awk '{print $2}')
+    if [ -z "$SSB_HOST" ]
+    then
+        SSB_HOST=$(ifconfig | grep 'inet '| grep -v 127.0.0.1 | sed 's,.*:,,' | awk '{print $2}')
+    fi
     if [ -z "$SSB_PORT" ]
     then
         NAME="elife"
