@@ -1,0 +1,80 @@
+
+<!doctype html>
+<html>
+<head>
+<title>node</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="github-markdown.css">
+<style>
+    .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        padding-top: 15px;
+    }
+
+    @media (max-width: 767px) {
+        .markdown-body {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+<body class="markdown-body">
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="managing-your-everlife-avatar">Managing Your Everlife Avatar</h1>
+<p>This document contains instructions for setting up and running your
+<code>Everlife</code> avatar on your own machines.</p>
+<p><img src="avatar_256x256.png" alt="Avatar" /></p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>In order to make it easy for you to deploy, rather than needing you to
+install all the various dependencies that the avatar requires, we have
+packaged the avatar into a <a href="https://www.docker.com/">Docker</a> container.</p>
+<p>To get started, please ensure you have Docker installed and configured
+on your machine.</p>
+<h2 id="setup">Setup</h2>
+<p>In order to get a working avatar, you need to download it, set it up and
+set up a <a href="the://telegram.org">Telegram</a> communication channel with it.
+The steps for doing this are not difficult and are as follows:</p>
+<ol>
+<li><p>Download the latest avatar zip file from <a href="https://everlife.ai">Everlife.ai</a></p></li>
+<li><p>Unzip the avatar into a directory of your choice</p></li>
+<li><p>Open your <code>terminal</code> and navigate to this directory</p></li>
+<li><p>Run</p>
+<pre><code>./run.sh setup</code></pre></li>
+<li><p>Go to <a href="https://telegram.me/botfather">botfather</a> and use the</p>
+<p><code>/newbot</code></p>
+<p>command to create your telegram bot.</p></li>
+<li><p>The BotFather will ask you for a name and username, then generate an
+authorization token for your new bot. The token is a string along the
+lines of <code>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</code>.</p></li>
+<li><p>We now need to link your new telegram bot with your avatar. To
+do this, simply save the telegram token in <a href="cfg.env"><code>cfg.env</code></a></p></li>
+</ol>
+<h2 id="starting-and-chatting-with-your-avatar">Starting and Chatting with Your Avatar</h2>
+<p>Now that your avatar is set up you can start him up by running</p>
+<pre><code>    ./run.sh avatar</code></pre>
+<p>Now you can go to your Telegram and start chatting!</p>
+<h2 id="next-steps">Next steps</h2>
+<ol>
+<li><p>Join the Everlife network through a <code>hub</code>. Get an invite from
+<a href="https://everlife.ai">Everlife.ai</a> and inform your avatar that you
+would like to join by saying:</p>
+<pre><code>"use this invite xxxxxx"</code></pre></li>
+<li><p>Install and try out various skills</p>
+<pre><code>"install calculator"
+"install what-wine"</code></pre></li>
+</ol>
+<p>Feel free to provide us your feedback and issues in our discord and
+support groups.</p>
+</body>
+</html>
+</body>
+</html>

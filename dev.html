@@ -1,0 +1,110 @@
+
+<!doctype html>
+<html>
+<head>
+<title>dev</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="github-markdown.css">
+<style>
+    .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        padding-top: 15px;
+    }
+
+    @media (max-width: 767px) {
+        .markdown-body {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+<body class="markdown-body">
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1 id="everlife-node-for-developers">Everlife Node for Developers</h1>
+<p>This document contains instructions for developers of Everlife that want
+to setup and begin work on the node. For everyone else a far more useful
+read would be <a href=node.html>this one</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>The node runs in a docker container and will self download and install
+<code>redis</code> and the core packages.</p>
+<h3 id="accessing-private-repositories">Accessing Private Repositories</h3>
+<p>Because we have multiple private repositories in
+<a href="https://github.com/everlifeai">Everlife</a>, in order to access them we
+need to authenticate ourselves.</p>
+<p>Needing to authenticate ourselves multiple times for multiple downloads
+and updates is tiresome so we use <code>ssh</code> access. If you can access Github-via-ssh
+<a href="https://github.com/everlifeai/elife/blob/2280f5ad77622bf362adc8edfc6201fb076aeb71/run.sh#L19">run.sh</a>
+will automatically pick up the ssh settings and use them to download the
+repositories.</p>
+<h3 id="steps-to-deploy">Steps to deploy</h3>
+<ul>
+<li><a href="https://help.github.com/articles/connecting-to-github-with-ssh/">Set up ssh access to Github</a></li>
+<li>Install Docker</li>
+<li><code>./run.sh setup</code> &amp;&amp; <code>./run.sh avatar</code></li>
+</ul>
+<p>And you're good to go!</p>
+<h2 id="quickstart">Quickstart</h2>
+<pre><code class="sh language-sh">$&gt; run.sh &lt;command&gt;
+    where:
+        &lt;command&gt; == One of the following:-
+           setup : Setup requirements for the avatar to start (docker &amp; node modules)
+           avatar: Start the avatar
+           enter : Enter running node container to examine and execute commands</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Processes are managed by <a href="https://pm2.io/">pm2</a>. The logs for processes
+started will be available in the <code>logs</code> directory. They are useful for
+debugging/troubleshooting.</p>
+<h2 id="package-overview">Package Overview</h2>
+<p>This package code will download and manage all the dependencies needed
+to run the avatar, install the skills, communicate with the user and so
+on.  Configuration, updates, and troubleshooting can all take place from
+here.</p>
+<p>This package itself can be thought of as the
+core of the avatar - it keeps the rest of the avatar (the AI brain, the
+immortal feed, the database etc) alive and stable. That is it's main
+responsibility (after all - it has to <em>live forever</em>).</p>
+<h3 id="package-details">Package Details</h3>
+<p><img src="elife.png" alt="Everlife Architecture" /></p>
+<p>For this to work, it delegates all other work to different processes
+(a.l.a Erlang's supervisor trees).</p>
+<p>These core processes include:</p>
+<ol>
+<li>The Scuttlebot Immortal Feed and Replication</li>
+<li>A Database for storing working data</li>
+<li>A Work Queue for managing and distributing work (with a worker
+pool)</li>
+<li>A Skill Manager for installing, running, and managing skills<ul>
+<li>Infrastructure Skills (as hub/as host/…)</li>
+<li>Worker skills (twitter svc, vanity address, …)</li></ul></li>
+<li>A Communication Manager for installing, running, and managing
+communication channels<ul>
+<li>Telegram channel</li>
+<li>Messenger channel</li>
+<li>Alexa channel</li>
+<li>Web channel</li>
+<li>…</li></ul></li>
+<li>An AI for understanding and managing user interaction and
+strategies for earning<ul>
+<li>Cakechat (python with microservices relay…)</li>
+<li>…</li></ul></li>
+<li>The stellar blockchain interface for payments, receipts, and smart
+contracts.</li>
+<li>…</li>
+</ol>
+<h2 id="scaling-out">Scaling Out</h2>
+<p>Because all communication happens via microservices in a docker
+container, for more advanced uses we can deploy services on multiple
+machines and have scale-out.</p>
+</body>
+</html>
+</body>
+</html>
