@@ -25,13 +25,18 @@ EOF
 function setup() {
     echo Setting up everlife docker...
     docker build -t everlifeai/elife .
-    echo Setting up node modules...
-    docker run -it --rm \
-        -v "$(pwd):/code" \
-        -v "$HOME/.ssh:/root/.ssh" \
-        -w "/code" \
-        -e "HOME=/tmp" \
-        everlifeai/elife yarn install
+    if [ -d node_modules ]
+    then
+        echo node_modules present so skipping...
+    else
+        echo Setting up node modules...
+        docker run -it --rm \
+            -v "$(pwd):/code" \
+            -v "$HOME/.ssh:/root/.ssh" \
+            -w "/code" \
+            -e "HOME=/tmp" \
+            everlifeai/elife yarn install
+    fi
 }
 
 #       problem/
