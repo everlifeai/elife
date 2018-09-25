@@ -36,6 +36,7 @@ function md2Html(md) {
             let o = converter.makeHtml(data)
             fs.writeFile(html, convert_to_html_1(o), (err) => {
                 if(err) console.error(err)
+                else console.log(`Generated ${html}`)
             })
         }
     })

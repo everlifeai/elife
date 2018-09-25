@@ -10,6 +10,7 @@ $SCRIPTNAME <command>
          setup: Setup requirements for the avatar to start (docker & node modules)
          avatar: Start the avatar
          enter: Enter running node container to execute commands
+         docs: Generate documentation
          help: Show this help
 EOF
 }
@@ -111,6 +112,13 @@ function enter() {
 }
 
 #       outcome/
+# Generate documentation for the node users
+#
+function docs() {
+    yarn docs
+}
+
+#       outcome/
 # Run the appropriate function based on the command-line parameter
 # If nothing was run, show the help.
 RUN=0
@@ -134,5 +142,6 @@ run_fn setup "$@"
 run_fn avatar "$@"
 run_fn enter "$@"
 run_fn cnt_start_avatar "$@"
+run_fn docs "$@"
 else_show_help
 
