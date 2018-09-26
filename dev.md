@@ -66,7 +66,7 @@ For this to work, it delegates all other work to different processes
 (a.l.a Erlang's supervisor trees).
 
 These core processes include:
-1. The Scuttlebot Immortal Feed and Replication
+1. The EverChain Feed and Replication
 2. A Database for storing working data
 3. A Work Queue for managing and distributing work (with a worker
 pool)
@@ -82,7 +82,9 @@ communication channels
    - ...
 6. An AI for understanding and managing user interaction and
 strategies for earning
-   - Cakechat (python with microservices relay...)
+   - Intent Resolution
+   - NLP
+   - Generative Dialogues (python with microservices relay...)
    - ...
 7. The stellar blockchain interface for payments, receipts, and smart
 contracts.
