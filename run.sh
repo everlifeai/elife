@@ -112,7 +112,7 @@ function enter() {
 }
 
 #       outcome/
-# Generate documentation for the node users
+# Generate HTML documentation from Markdown
 #
 function docs() {
     yarn docs
