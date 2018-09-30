@@ -26,18 +26,36 @@ EOF
 function setup() {
     echo Setting up everlife docker...
     docker build -t everlifeai/elife .
-    if [ -d node_modules ]
-    then
-        echo node_modules present so skipping...
-    else
-        echo Setting up node modules...
-        docker run -it --rm \
-            -v "$(pwd):/code" \
-            -v "$HOME/.ssh:/root/.ssh" \
-            -w "/code" \
-            -e "HOME=/tmp" \
-            everlifeai/elife yarn install
-    fi
+    docker run -it --rm \
+        -v "$(pwd):/code" \
+        -v "$HOME/.ssh:/root/.ssh" \
+        -w "/code" \
+        -e "HOME=/tmp" \
+        everlifeai/elife ./run.sh update_node_deps
+}
+
+#       outcome/
+# Find all the packages available on disk and update their dependent
+# `node_modules` if not already present
+#
+function update_node_deps() {
+    REPOS=$(find . -type d -name .git | sed 's/\.git$//')
+    for R in $REPOS
+    do
+
+        cd "$R" || exit 1
+
+        N=$(basename $R)
+        echo "Setting up dependencies for $N..."
+        if [ -d node_modules ]
+        then
+            echo node_modules present so skipping...
+        else
+            yarn install || exit 1
+        fi
+
+        cd - > /dev/null 2>&1 || exit 1
+    done
 }
 
 #       problem/
@@ -156,6 +174,7 @@ run_fn setup "$@"
 run_fn avatar "$@"
 run_fn enter "$@"
 run_fn cnt_start_avatar "$@"
+run_fn update_node_deps "$@"
 run_fn docs "$@"
 else_show_help
 
