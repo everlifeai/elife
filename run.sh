@@ -66,8 +66,21 @@ function setupDockerParams() {
     fi
 }
 
+#           problem/
+# Cote.js auto-discovers all relevant microservices on the same network
+# (even within docker containers). We would like to use the microservice
+# only within a node's docker container.
+#
+#           way/
+# We use Cote.js' `environment` parameter to partition the node's
+# services so that nodes will not interfere with each other.
+function setupPartitionParam() {
+    COTE_ENV=$(yarn -s part)
+}
+
 function avatar() {
     setupDockerParams
+    setupPartitionParam
 
     docker run -it --rm \
         -v "$(pwd):/code" \
@@ -76,6 +89,7 @@ function avatar() {
         -e "HOME=/tmp" \
         -e SSB_HOST="$SSB_HOST" \
         -e SSB_PORT="$SSB_PORT" \
+        -e COTE_ENV="$COTE_ENV" \
         -p "$SSB_PORT:$SSB_PORT" \
         --name "${NAME}" \
         --env-file cfg.env \
