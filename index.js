@@ -70,7 +70,7 @@ function startCoreProcesses(cfg) {
         { pkg: "everlifeai/elife-skill-mgr" },
         { pkg: "everlifeai/elife-ai" },
         { pkg: "everlifeai/elife-communication-mgr" },
-        //{ pkg: "everlifeai/elife-stellar" },
+        { pkg: "everlifeai/elife-stellar" },
     ];
 
     u.showMsg(`Installing core packages...`)
