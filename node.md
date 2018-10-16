@@ -86,5 +86,9 @@ Now you can go to your Telegram and start chatting!
         "install calculator"
         "install what-wine"
 
+3. Fund your avatar by using
+   [coupons](https://github.com/everlifeai/elife-coupon) from the
+   [Everstore](https://github.com/everlifeai/everlife-marketplace)
+
 Feel free to provide us your feedback and issues in our discord and
 support groups.
