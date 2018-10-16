@@ -8,8 +8,9 @@ $SCRIPTNAME <command>
     where:
         <command> == Commands to run your everlife node
          setup: Setup requirements for the avatar to start (docker & node modules)
+         load: Load the avatar's container machine to look around
          avatar: Start the avatar
-         enter: Enter running node container to execute commands
+         enter: Enter the avatar's container while it is running
          docs: Generate documentation
          help: Show this help
 EOF
@@ -97,6 +98,14 @@ function setupPartitionParam() {
 }
 
 function avatar() {
+    run_avatar_docker ./run.sh cnt_start_avatar
+}
+
+#       outcome/
+# Run the docker container containing the avatar with all the
+# appropriate settings and then execute whatever has been requested as
+# parameters
+function run_avatar_docker() {
     setupDockerParams
     setupPartitionParam
 
@@ -111,7 +120,20 @@ function avatar() {
         -p "$SSB_PORT:$SSB_PORT" \
         --name "${NAME}" \
         --env-file cfg.env \
-        everlifeai/elife ./run.sh cnt_start_avatar
+        everlifeai/elife "$@"
+}
+
+#       problem/
+# When working with the avatar's code, we want to make sure it's
+# dependencies etc are managed withing the proper avatar docker
+# container and not the host machine.
+#
+#       way/
+# Start the correct docker container but do not run the avatar. Instead,
+# run the shell so we can move around and make changes without the
+# avatar being active.
+function load() {
+    run_avatar_docker bash
 }
 
 #       understand/
@@ -171,6 +193,7 @@ function else_show_help() {
 }
 
 run_fn setup "$@"
+run_fn load "$@"
 run_fn avatar "$@"
 run_fn enter "$@"
 run_fn cnt_start_avatar "$@"
