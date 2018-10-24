@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SCRIPTNAME=$(basename "$0")
+DATADIR="$(dirname $(pwd))/elife.data"
 
 function help() {
     cat <<EOF
@@ -109,20 +110,23 @@ function avatar() {
 # appropriate settings and then execute whatever has been requested as
 # parameters
 function run_avatar_docker() {
+    setupDataFolder
     setupDockerParams
     setupPartitionParam
 
     docker run -it --rm \
         -v "$(pwd):/code" \
+        -v "$DATADIR:/data" \
         -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
+        -e ELIFE_DATADIR="$DATADIR" \
         -e SSB_HOST="$SSB_HOST" \
         -e SSB_PORT="$SSB_PORT" \
         -e COTE_ENV="$COTE_ENV" \
         -p "$SSB_PORT:$SSB_PORT" \
         --name "${NAME}" \
-        --env-file cfg.env \
+        --env-file "$DATADIR/cfg.env" \
         everlifeai/elife "$@"
 }
 
@@ -156,7 +160,16 @@ function cnt_start_avatar() {
 }
 
 function start_redis() {
-    /root/redis-4.0.11/src/redis-server &
+    REDIS_DIR="/data/redis"
+    [ -d "$REDIS_DIR" ] || mkdir "$REDIS_DIR"
+    /root/redis-4.0.11/src/redis-server ./redis.conf &
+}
+
+#       outcome/
+# Ensure that the data folder `elife-data` is present (create if
+# necessary)
+function setupDataFolder() {
+    [ -d "$DATADIR" ] || mkdir "$DATADIR"
 }
 
 #       outcome/
