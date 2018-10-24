@@ -73,10 +73,10 @@ debugging/troubleshooting.</p>
 to run the avatar, install the skills, communicate with the user and so
 on.  Configuration, updates, and troubleshooting can all take place from
 here.</p>
-<p>This package itself can be thought of as the
-core of the avatar - it keeps the rest of the avatar (the AI brain, the
-immortal feed, the database etc) alive and stable. That is it's main
-responsibility (after all - it has to <em>live forever</em>).</p>
+<p>This package itself can be thought of as the core of the avatar - it
+keeps the rest of the avatar (the AI brain, the immortal feed, the
+database etc) alive and stable. That is it's main responsibility (after
+all - it has to <em>live forever</em>).</p>
 <h3 id="package-details">Package Details</h3>
 <p><img src="elife.png" alt="Everlife Architecture" /></p>
 <p>For this to work, it delegates all other work to different processes
@@ -107,6 +107,11 @@ strategies for earning<ul>
 contracts.</li>
 <li>…</li>
 </ol>
+<h2 id="data">Data</h2>
+<p>The avatar's data always lives in an adjoining folder <code>elife.data</code>. It
+is recommended that you backup this folder as it contains your
+<code>Everchain</code>, your <code>database</code>, and your <code>Stellar</code> wallet.</p>
+<p><strong><code>elife.db</code></strong> <img src="db.png" alt="db" /></p>
 <h2 id="scaling-out">Scaling Out</h2>
 <p>Because all communication happens via microservices in a docker
 container, for more advanced uses we can deploy services on multiple

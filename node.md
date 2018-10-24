@@ -64,6 +64,16 @@ comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT **CANNOT BE
 RECOVERED**.
 
 
+## Your Data
+
+The avatar's data always lives in an adjoining folder `elife.data`. It
+is recommended that you backup this folder as it contains your
+`Everchain`, your `database`, and your `Stellar` wallet.
+
+**`elife.db`** ![db](db.png)
+
+
+
 ## Starting and Chatting with Your Avatar
 
 Now that your avatar is set up you can start him up by running

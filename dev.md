@@ -57,10 +57,10 @@ to run the avatar, install the skills, communicate with the user and so
 on.  Configuration, updates, and troubleshooting can all take place from
 here.
 
-This package itself can be thought of as the
-core of the avatar - it keeps the rest of the avatar (the AI brain, the
-immortal feed, the database etc) alive and stable. That is it's main
-responsibility (after all - it has to *live forever*).
+This package itself can be thought of as the core of the avatar - it
+keeps the rest of the avatar (the AI brain, the immortal feed, the
+database etc) alive and stable. That is it's main responsibility (after
+all - it has to *live forever*).
 
 
 
@@ -95,6 +95,16 @@ strategies for earning
 7. The stellar blockchain interface for payments, receipts, and smart
 contracts.
 8. ...
+
+
+## Data
+
+The avatar's data always lives in an adjoining folder `elife.data`. It
+is recommended that you backup this folder as it contains your
+`Everchain`, your `database`, and your `Stellar` wallet.
+
+**`elife.db`** ![db](db.png)
+
 
 ## Scaling Out
 Because all communication happens via microservices in a docker
