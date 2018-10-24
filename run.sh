@@ -7,10 +7,13 @@ function help() {
 $SCRIPTNAME <command>
     where:
         <command> == Commands to run your everlife node
-         setup: Setup requirements for the avatar to start (docker & node modules)
-         load: Load the avatar's container machine to look around
+         setup: Setup docker & node modules needed for the avatar to start
+
          avatar: Start the avatar
-         enter: Enter the avatar's container while it is running
+
+         enter: Enter the avatar's container machine to look around
+         enter_running: Enter the avatar's container while it is running
+
          docs: Generate documentation
          help: Show this help
 EOF
@@ -132,7 +135,7 @@ function run_avatar_docker() {
 # Start the correct docker container but do not run the avatar. Instead,
 # run the shell so we can move around and make changes without the
 # avatar being active.
-function load() {
+function enter() {
     run_avatar_docker bash
 }
 
@@ -159,7 +162,7 @@ function start_redis() {
 #       outcome/
 # Enter the running docker container to execute tests, manual commands
 # etc etc.
-function enter() {
+function enter_running() {
     setupDockerParams
     echo Entering ${NAME}...
     docker exec -it "${NAME}" bash
@@ -193,9 +196,9 @@ function else_show_help() {
 }
 
 run_fn setup "$@"
-run_fn load "$@"
 run_fn avatar "$@"
 run_fn enter "$@"
+run_fn enter_running "$@"
 run_fn cnt_start_avatar "$@"
 run_fn update_node_deps "$@"
 run_fn docs "$@"

@@ -56,9 +56,14 @@ repositories.</p>
 <pre><code class="sh language-sh">$&gt; run.sh &lt;command&gt;
     where:
         &lt;command&gt; == One of the following:-
-           setup : Setup requirements for the avatar to start (docker &amp; node modules)
-           avatar: Start the avatar
-           enter : Enter running node container to examine and execute commands</code></pre>
+            setup: Setup docker &amp; node modules for the avatar to start
+            avatar: Start the avatar
+
+            enter: Enter the avatar's container machine to look around
+            enter_running: Enter the avatar's container while it is running
+
+            docs: Generate documentation
+            help: Show this help</code></pre>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Processes are managed by <a href="https://pm2.io/">pm2</a>. The logs for processes
 started will be available in the <code>logs</code> directory. They are useful for

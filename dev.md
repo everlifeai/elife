@@ -34,9 +34,15 @@ And you're good to go!
 $> run.sh <command>
     where:
         <command> == One of the following:-
-           setup : Setup requirements for the avatar to start (docker & node modules)
-           avatar: Start the avatar
-           enter : Enter running node container to examine and execute commands
+            setup: Setup docker & node modules for the avatar to start
+            avatar: Start the avatar
+
+            enter: Enter the avatar's container machine to look around
+            enter_running: Enter the avatar's container while it is running
+
+            docs: Generate documentation
+            help: Show this help
+
 ```
 
 ## Troubleshooting
