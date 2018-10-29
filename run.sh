@@ -111,6 +111,7 @@ function avatar() {
 # parameters
 function run_avatar_docker() {
     setupDataFolder
+    setupCfgEnv
     setupDockerParams
     setupPartitionParam
 
@@ -170,6 +171,26 @@ function start_redis() {
 # necessary)
 function setupDataFolder() {
     [ -d "$DATADIR" ] || mkdir "$DATADIR"
+}
+
+#       outcome/
+# Ensure that we have a valid template for cfg.env if it does not
+# already exist.
+#
+function setupCfgEnv() {
+    CFG="$DATADIR/cfg.env"
+    if [ ! -f "$CFG" ]
+    then
+        cat > "$CFG" <<EOF
+#       understand/
+# We use environment variables to configure various skills and services.
+# In order to pass those into the docker container running our node we
+# list them in this file
+#
+TELEGRAM_TOKEN=
+COTE_ENV=
+EOF
+    fi
 }
 
 #       outcome/

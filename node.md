@@ -48,7 +48,8 @@ for doing this are as follows:
    authorization token for your new bot. The token is a string along the
    lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. 
 1. We now need to link this new telegram bot with your avatar. To do
-   this, simply save the telegram token in [cfg.env](./cfg.env)
+   this, simply save the telegram token in
+   [../elife.data/cfg.env](../elife.data/cfg.env)
 
 
 
