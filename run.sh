@@ -207,10 +207,11 @@ EOF
 # Although we shouldn't really *know* what stellar is going to use we
 # will reach inside pull out the path and check for it before we allow
 # the avatar to start.
-#
+# Update: This does not work when the file is obfuscated! We will now
+# hardcode the path.
+# TODO: Move this check to `elife-stellar`
 function checkPasswdFile() {
-    STELLAR_CFG_FILE=services/elife-stellar/pwc.js
-    STELLAR_PW_FLE=$(cat "$STELLAR_CFG_FILE" | grep PASSWORD_FILE | sed 's,.*: "/data/,,;s,".*,,')
+    STELLAR_PW_FLE=".luminate-pw"
     if [ ! -f "$DATADIR/$STELLAR_PW_FLE" ]
     then
         cat <<EOF
