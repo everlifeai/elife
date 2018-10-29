@@ -11,6 +11,7 @@ $SCRIPTNAME <command>
          setup: Setup docker & node modules needed for the avatar to start
 
          avatar: Start the avatar
+         stop: Stop the avatar
 
          enter: Enter the avatar's container machine to look around
          enter_running: Enter the avatar's container while it is running
@@ -148,6 +149,11 @@ function enter() {
     run_avatar_docker bash
 }
 
+function stop() {
+    setupDockerParams
+    docker stop "$NAME" && docker rm "$NAME"
+}
+
 #       understand/
 # This function is called within the docker container to start the node
 # once the docker virtual machine has started up
@@ -267,6 +273,7 @@ function else_show_help() {
 
 run_fn setup "$@"
 run_fn avatar "$@"
+run_fn stop "$@"
 run_fn enter "$@"
 run_fn enter_running "$@"
 run_fn cnt_start_avatar "$@"

@@ -28,6 +28,13 @@ repositories.
 
 And you're good to go!
 
+## Stopping your avatar
+
+Your avatar will keep running in the background and is expected to run
+even after you restart your machine. To stop the avatar please run:
+
+        ./run.sh stop
+
 
 ## Quickstart
 ```sh

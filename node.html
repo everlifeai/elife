@@ -66,7 +66,8 @@ typing</p>
 authorization token for your new bot. The token is a string along the
 lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. </p></li>
 <li><p>We now need to link this new telegram bot with your avatar. To do
-this, simply save the telegram token in <a href="./cfg.env">cfg.env</a></p></li>
+this, simply save the telegram token in
+<a href="../elife.data/cfg.env">../elife.data/cfg.env</a></p></li>
 </ol>
 <h2 id="set-up-your-stellar-wallet">Set up your Stellar Wallet</h2>
 <p>In order to safeguard the wallet, it is password protected. So that the
@@ -92,6 +93,10 @@ is recommended that you backup this folder as it contains your
 <p>Now that your avatar is set up you can start him up by running</p>
 <pre><code>    ./run.sh avatar</code></pre>
 <p>Now you can go to your Telegram and start chatting!</p>
+<h2 id="stopping-your-avatar">Stopping your avatar</h2>
+<p>Your avatar will keep running in the background and is expected to run
+even after you restart your machine. To stop the avatar please run:</p>
+<pre><code>    ./run.sh stop</code></pre>
 <h2 id="next-steps">Next steps</h2>
 <ol>
 <li><p>Join the Everlife network through an <strong>Avatar Hub</strong>.Contact our

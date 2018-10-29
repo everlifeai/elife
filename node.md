@@ -96,6 +96,14 @@ Now that your avatar is set up you can start him up by running
 Now you can go to your Telegram and start chatting!
 
 
+## Stopping your avatar
+
+Your avatar will keep running in the background and is expected to run
+even after you restart your machine. To stop the avatar please run:
+
+        ./run.sh stop
+
+
 ## Next steps
 1. Join the Everlife network through an **Avatar Hub**.Contact our
    support channel in discord to get your invite code to join the hub
