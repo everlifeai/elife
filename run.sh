@@ -102,6 +102,7 @@ function setupPartitionParam() {
 }
 
 function avatar() {
+    checkPasswdFile
     run_avatar_docker ./run.sh cnt_start_avatar
 }
 
@@ -191,6 +192,37 @@ TELEGRAM_TOKEN=
 COTE_ENV=
 EOF
     fi
+}
+
+#       problem/
+# `elife-stellar` expects a wallet password to be present in a file in
+# the data directory. If it does not find it, it stops and the process
+# manager restarts it causing it to look for the file again, crash again
+# and so on in a never ending cycle of despair.
+#
+#       way/
+# Although we shouldn't really *know* what stellar is going to use we
+# will reach inside pull out the path and check for it before we allow
+# the avatar to start.
+#
+function checkPasswdFile() {
+    STELLAR_CFG_FILE=services/elife-stellar/pwc.js
+    STELLAR_PW_FLE=$(cat "$STELLAR_CFG_FILE" | grep PASSWORD_FILE | sed 's,.*: "/data/,,;s,".*,,')
+    if [ ! -f "$DATADIR/$STELLAR_PW_FLE" ]
+    then
+        cat <<EOF
+Error: Stellar password not found
+
+Please set up your stellar password before starting the node.
+Steps to follow:
+    1. ./run.sh enter
+    2. cd services/elife-stellar
+    3. node pw
+(See node setup instructions - node.html - for more details)
+EOF
+        exit 1
+    fi
+
 }
 
 #       outcome/
