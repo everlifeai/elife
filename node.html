@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<title>node</title>
+<title>Managing Your Everlife Avatar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="github-markdown.css">
 <style>
@@ -31,32 +31,42 @@
 <body>
 <h1 id="managing-your-everlife-avatar">Managing Your Everlife Avatar</h1>
 <p>This document contains instructions for setting up and running your
-<code>Everlife</code> avatar on your own machines.</p>
+<strong>Everlife</strong> avatar on your own machines.</p>
 <p><img src="avatar_256x256.png" alt="Avatar" /></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
 <p>In order to make it easy for you to deploy, rather than needing you to
 install all the various dependencies that the avatar requires, we have
-packaged the avatar into a <a href="https://www.docker.com/">Docker</a> container.</p>
-<p>To get started, please ensure you have Docker installed and configured
-on your machine.</p>
-<h2 id="setup">Setup</h2>
-<p>In order to get a working avatar, you need to download it, set it up and
-set up a <a href="the://telegram.org">Telegram</a> communication channel with it.
-The steps for doing this are not difficult and are as follows:</p>
+packaged the avatar into a Docker container.</p>
+<h3 id="mac-pre-requisities">Mac Pre-requisities</h3>
 <ol>
-<li><p>Download the latest avatar zip file from <a href="https://everlife.ai">Everlife.ai</a></p></li>
-<li><p>Unzip the avatar into a directory of your choice</p></li>
-<li><p>Open your <code>terminal</code> and navigate to this directory</p></li>
+<li>Install <a href="https://store.docker.com/editions/community/docker-ce-desktop-mac">Docker</a></li>
+<li>Install Yarn: <code>brew install yarn</code></li>
+</ol>
+<h3 id="windows-pre-requisities">Windows Pre-requisities</h3>
+<ol>
+<li>Install <a href="https://store.docker.com/editions/community/docker-ce-desktop-windows">Docker</a></li>
+<li>Install Cygwin: <a href="https://www.cygwin.com/setup-x86_64.exe">64 Bit Version</a> or
+<a href="https://www.cygwin.com/setup-x86.exe">32 Bit Version</a></li>
+<li>Install <a href="https://yarnpkg.com/latest.msi">Yarn</a></li>
+</ol>
+<p>To get started, please ensure you have started Docker from Desktop Shortcuts.</p>
+<h2 id="setup">Setup</h2>
+<p>In order to get a working avatar, you need to set it up and configure
+<a href="the://telegram.org">Telegram</a> communication channel with it. The steps
+for doing this are as follows:</p>
+<ol>
+<li><p>Unzip the avatar into your <code>$HOME</code> directory</p></li>
 <li><p>Run</p>
 <pre><code>./run.sh setup</code></pre></li>
-<li><p>Go to <a href="https://telegram.me/botfather">botfather</a> and use the</p>
+<li><p>Go to <a href="https://telegram.me/botfather">Telegram</a> to create a bot by
+typing</p>
 <p><code>/newbot</code></p>
 <p>command to create your telegram bot.</p></li>
 <li><p>The BotFather will ask you for a name and username, then generate an
 authorization token for your new bot. The token is a string along the
-lines of <code>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</code>.</p></li>
-<li><p>We now need to link your new telegram bot with your avatar. To
-do this, simply save the telegram token in <a href="cfg.env"><code>cfg.env</code></a></p></li>
+lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. </p></li>
+<li><p>We now need to link this new telegram bot with your avatar. To do
+this, simply save the telegram token in <a href="./cfg.env">cfg.env</a></p></li>
 </ol>
 <h2 id="set-up-your-stellar-wallet">Set up your Stellar Wallet</h2>
 <p>In order to safeguard the wallet, it is password protected. So that the
@@ -84,19 +94,17 @@ is recommended that you backup this folder as it contains your
 <p>Now you can go to your Telegram and start chatting!</p>
 <h2 id="next-steps">Next steps</h2>
 <ol>
-<li><p>Join the Everlife network through a <code>hub</code>. Get an invite from
-<a href="https://everlife.ai">Everlife.ai</a> and inform your avatar that you
-would like to join by saying:</p>
-<pre><code>"use this invite xxxxxx"</code></pre></li>
+<li><p>Join the Everlife network through an <strong>Avatar Hub</strong>.Contact our
+support channel in discord to get your invite code to join the hub
+and inform your avatar that you would like to join this Avatar Hub by
+saying</p>
+<pre><code>/use_invite xxxx</code></pre></li>
 <li><p>Install and try out various skills</p>
 <pre><code>"install calculator"
 "install what-wine"</code></pre></li>
-<li><p>Fund your avatar by using
-<a href="https://github.com/everlifeai/elife-coupon">coupons</a> from the
-<a href="https://github.com/everlifeai/everlife-marketplace">Everstore</a></p></li>
 </ol>
-<p>Feel free to provide us your feedback and issues in our discord and
-support groups.</p>
+<p>Feel free to provide us your feedback and issues in our <a href="https://discord.gg/TDyRSr4">discord support
+channel</a>.</p>
 </body>
 </html>
 </body>

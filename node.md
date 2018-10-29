@@ -1,7 +1,7 @@
 # Managing Your Everlife Avatar
 
 This document contains instructions for setting up and running your
-`Everlife` avatar on your own machines.
+**Everlife** avatar on your own machines.
 
 ![Avatar](avatar_256x256.png)
 
@@ -9,35 +9,46 @@ This document contains instructions for setting up and running your
 ## Pre-requisites
 In order to make it easy for you to deploy, rather than needing you to
 install all the various dependencies that the avatar requires, we have
-packaged the avatar into a [Docker](https://www.docker.com/) container.
+packaged the avatar into a Docker container.
 
-To get started, please ensure you have Docker installed and configured
-on your machine.
+### Mac Pre-requisities
+
+1. Install [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+2. Install Yarn: `brew install yarn`
+
+### Windows Pre-requisities
+
+1. Install [Docker](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+2. Install Cygwin: [64 Bit Version](https://www.cygwin.com/setup-x86_64.exe) or
+   [32 Bit Version](https://www.cygwin.com/setup-x86.exe)
+3. Install [Yarn](https://yarnpkg.com/latest.msi)
+
+To get started, please ensure you have started Docker from Desktop Shortcuts.
 
 
 ## Setup
 
-In order to get a working avatar, you need to download it, set it up and
-set up a [Telegram](the://telegram.org) communication channel with it.
-The steps for doing this are not difficult and are as follows:
+In order to get a working avatar, you need to set it up and configure
+[Telegram](the://telegram.org) communication channel with it. The steps
+for doing this are as follows:
 
-1. Download the latest avatar zip file from [Everlife.ai](https://everlife.ai)
-2. Unzip the avatar into a directory of your choice
-3. Open your `terminal` and navigate to this directory
-4. Run
+1. Unzip the avatar into your `$HOME` directory
+1. Run
 
         ./run.sh setup
 
-5. Go to [botfather](https://telegram.me/botfather) and use the
+1. Go to [Telegram](https://telegram.me/botfather) to create a bot by
+   typing
 
        `/newbot`
 
     command to create your telegram bot.
-6. The BotFather will ask you for a name and username, then generate an
+
+1. The BotFather will ask you for a name and username, then generate an
    authorization token for your new bot. The token is a string along the
-   lines of `110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw`.
-7. We now need to link your new telegram bot with your avatar. To
-   do this, simply save the telegram token in [`cfg.env`](cfg.env)
+   lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. 
+1. We now need to link this new telegram bot with your avatar. To do
+   this, simply save the telegram token in [cfg.env](./cfg.env)
 
 
 
@@ -85,20 +96,18 @@ Now you can go to your Telegram and start chatting!
 
 
 ## Next steps
-1. Join the Everlife network through a `hub`. Get an invite from
-   [Everlife.ai](https://everlife.ai) and inform your avatar that you
-    would like to join by saying:
+1. Join the Everlife network through an **Avatar Hub**.Contact our
+   support channel in discord to get your invite code to join the hub
+   and inform your avatar that you would like to join this Avatar Hub by
+   saying
 
-        "use this invite xxxxxx"
+        /use_invite xxxx
 
 2. Install and try out various skills
 
         "install calculator"
         "install what-wine"
 
-3. Fund your avatar by using
-   [coupons](https://github.com/everlifeai/elife-coupon) from the
-   [Everstore](https://github.com/everlifeai/everlife-marketplace)
 
-Feel free to provide us your feedback and issues in our discord and
-support groups.
+Feel free to provide us your feedback and issues in our [discord support
+channel](https://discord.gg/TDyRSr4).

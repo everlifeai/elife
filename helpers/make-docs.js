@@ -33,8 +33,9 @@ function md2Html(md) {
     fs.readFile(md, 'utf8', (err, data) => {
         if(err) console.error(err)
         else {
+            let title = get_title_1(data)
             let o = converter.makeHtml(data)
-            fs.writeFile(html, convert_to_html_1(o), (err) => {
+            fs.writeFile(html, convert_to_html_1(title, o), (err) => {
                 if(err) console.error(err)
                 else console.log(`Generated ${html}`)
             })
@@ -42,16 +43,31 @@ function md2Html(md) {
     })
 
     /*      outcome/
+     * Take the first heading as the title of the document (defaulting
+     * to `name` of the file)
+     */
+    function get_title_1(data) {
+        let lines = data.split(/[\r\n]/)
+        for(let i = 0;i < lines.length;i++) {
+            let l = lines[i]
+            if(l.startsWith('#')) {
+                return l.substring(1).trim()
+            }
+        }
+        return name
+    }
+
+    /*      outcome/
      * Convert the markup into HTML by converting links from markdown
      * files to HTML, adding the head, CSS, etc
      */
-    function convert_to_html_1(mu) {
+    function convert_to_html_1(title, mu) {
         let o = mu.replace(/href="(.*)\.md"/g, 'href=$1.html')
         let html = `
 <!doctype html>
 <html>
 <head>
-<title>${name}</title>
+<title>${title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="github-markdown.css">
 <style>
