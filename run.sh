@@ -103,6 +103,7 @@ function setupPartitionParam() {
 
 function avatar() {
     checkPasswdFile
+    DOCKER_RESTART_POLICY="unless-stopped"
     run_avatar_docker ./run.sh cnt_start_avatar
 }
 
@@ -116,7 +117,7 @@ function run_avatar_docker() {
     setupDockerParams
     setupPartitionParam
 
-    docker run -it --rm \
+    docker run -it \
         -v "$(pwd):/code" \
         -v "$DATADIR:/data" \
         -v "$HOME/.ssh:/root/.ssh" \
@@ -129,6 +130,7 @@ function run_avatar_docker() {
         -p "$SSB_PORT:$SSB_PORT" \
         --name "${NAME}" \
         --env-file "$DATADIR/cfg.env" \
+        --restart $DOCKER_RESTART_POLICY \
         everlifeai/elife "$@"
 }
 
@@ -142,6 +144,7 @@ function run_avatar_docker() {
 # run the shell so we can move around and make changes without the
 # avatar being active.
 function enter() {
+    DOCKER_RESTART_POLICY="no"
     run_avatar_docker bash
 }
 
