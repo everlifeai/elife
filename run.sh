@@ -118,7 +118,14 @@ function run_avatar_docker() {
     setupDockerParams
     setupPartitionParam
 
-    docker run -it \
+    if [ "$DOCKER_RESTART_POLICY" == "no" ]
+    then
+        RM="--rm"
+    else
+        RM=""
+    fi
+
+    docker run -it $RM \
         -v "$(pwd):/code" \
         -v "$DATADIR:/data" \
         -v "$HOME/.ssh:/root/.ssh" \
