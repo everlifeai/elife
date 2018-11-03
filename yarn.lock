@@ -28,8 +28,8 @@
     ws "^6.0.0"
 
 "@pm2/agent@^0.5.11":
-  version "0.5.16"
-  resolved "https://registry.yarnpkg.com/@pm2/agent/-/agent-0.5.16.tgz#0d2fcbfa15cd682424409b4b6765c9b8f712dde4"
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/@pm2/agent/-/agent-0.5.17.tgz#af0f622bff750570ab07fefc05a2ebe1fc85b424"
   dependencies:
     async "^2.6.0"
     eventemitter2 "^5.0.1"
@@ -553,7 +553,7 @@ double-ended-queue@^2.1.0-0:
 
 elife-pkg-mgr@everlifeai/elife-pkg-mgr:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/everlifeai/elife-pkg-mgr.git#0e7cff6acf66262a36ea69b61b5067b769c92e0f"
+  resolved "git+ssh://git@github.com/everlifeai/elife-pkg-mgr.git#c29c3631546284bca5789316dc79b542f4e68a64"
   dependencies:
     elife-utils everlifeai/elife-utils
 
@@ -790,8 +790,8 @@ glob@^7.0.0, glob@^7.0.5:
     path-is-absolute "^1.0.0"
 
 graceful-fs@^4.1.11:
-  version "4.1.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+  version "4.1.14"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.14.tgz#1b6e8362ef8c5ecb5da799901f39297e3054773a"
 
 has-ansi@^2.0.0:
   version "2.0.0"
