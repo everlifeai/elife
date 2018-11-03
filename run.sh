@@ -2,6 +2,7 @@
 
 SCRIPTNAME=$(basename "$0")
 DATADIR="$(dirname $(pwd))/elife.data"
+SKILLDIR="$(dirname $(pwd))/elife.skills"
 
 function help() {
     cat <<EOF
@@ -113,7 +114,7 @@ function avatar() {
 # appropriate settings and then execute whatever has been requested as
 # parameters
 function run_avatar_docker() {
-    setupDataFolder
+    setupDataFolders
     setupCfgEnv
     setupDockerParams
     setupPartitionParam
@@ -128,10 +129,12 @@ function run_avatar_docker() {
     docker run -it $RM \
         -v "$(pwd):/code" \
         -v "$DATADIR:/data" \
+        -v "$SKILLDIR:/skills" \
         -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
         -e ELIFE_DATADIR="$DATADIR" \
+        -e ELIFE_SKILLDIR="$SKILLDIR" \
         -e SSB_HOST="$SSB_HOST" \
         -e SSB_PORT="$SSB_PORT" \
         -e COTE_ENV="$COTE_ENV" \
@@ -184,10 +187,11 @@ function start_redis() {
 }
 
 #       outcome/
-# Ensure that the data folder `elife-data` is present (create if
-# necessary)
-function setupDataFolder() {
+# Ensure that the data folder (`elife.data`) and skill folder
+# (`elife.skills`) are present (create if necessary)
+function setupDataFolders() {
     [ -d "$DATADIR" ] || mkdir "$DATADIR"
+    [ -d "$SKILLDIR" ] || mkdir "$SKILLDIR"
 }
 
 #       outcome/
