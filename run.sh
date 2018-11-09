@@ -14,6 +14,8 @@ $SCRIPTNAME <command>
          avatar: Start the avatar
          stop: Stop the avatar
 
+         gui: Run the default GUI client (QWERT)
+
          enter: Enter the avatar's container machine to look around
          enter_running: Enter the avatar's container while it is running
 
@@ -28,7 +30,9 @@ EOF
 #
 #       way/
 # Share our local ~/.ssh/ folder into the docker container which allows
-# us to use our local credentials when connecting to github
+# us to use our local credentials when connecting to github.
+#
+# Set up the everlife docker and the QWERT application
 #
 function setup() {
     echo Setting up everlife docker...
@@ -39,6 +43,17 @@ function setup() {
         -w "/code" \
         -e "HOME=/tmp" \
         everlifeai/elife ./run.sh update_node_deps
+
+    echo Setting up QWERT...
+    if [ -d qwert ]
+    then
+        cd qwert
+        yarn install
+        cd ..
+    else
+        echo Failed to find QWERT
+        exit 1
+    fi
 }
 
 #       outcome/
@@ -63,6 +78,14 @@ function update_node_deps() {
 
         cd - > /dev/null 2>&1 || exit 1
     done
+}
+
+#       outcome/
+# Run the default GUI to connect with our avatar (QWERT)
+#
+function gui() {
+    cd qwert || exit 1
+    yarn start
 }
 
 #       problem/
@@ -296,6 +319,7 @@ function else_show_help() {
 
 run_fn setup "$@"
 run_fn avatar "$@"
+run_fn gui "$@"
 run_fn stop "$@"
 run_fn enter "$@"
 run_fn enter_running "$@"
