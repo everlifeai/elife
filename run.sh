@@ -84,10 +84,20 @@ function setupDockerParams() {
     fi
     if [ -z "$SSB_PORT" ]
     then
-        NAME="elife"
         SSB_PORT="8997"
+        P1="DEFAULT"
+    fi
+    if [ -z "$QWERT_PORT" ]
+    then
+        QWERT_PORT="7766"
+        P2="DEFAULT"
+    fi
+
+    if [ "$P1" = "DEFAULT" -a "$P2" = "DEFAULT" ]
+    then
+        NAME="elife"
     else
-        NAME="elife-$SSB_PORT"
+        NAME="elife-$SSB_PORT-$QWERT_PORT"
     fi
 }
 
@@ -135,10 +145,12 @@ function run_avatar_docker() {
         -e "HOME=/tmp" \
         -e ELIFE_DATADIR="$DATADIR" \
         -e ELIFE_SKILLDIR="$SKILLDIR" \
+        -e COTE_ENV="$COTE_ENV" \
         -e SSB_HOST="$SSB_HOST" \
         -e SSB_PORT="$SSB_PORT" \
-        -e COTE_ENV="$COTE_ENV" \
+        -e QWERT_PORT="$QWERT_PORT" \
         -p "$SSB_PORT:$SSB_PORT" \
+        -p "$QWERT_PORT:$QWERT_PORT" \
         --name "${NAME}" \
         --env-file "$DATADIR/cfg.env" \
         --restart $DOCKER_RESTART_POLICY \
