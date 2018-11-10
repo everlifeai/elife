@@ -24,25 +24,11 @@ $SCRIPTNAME <command>
 EOF
 }
 
-#       problem/
-# Some of our repositories are privately hosted on github. These are not
-# accesible within the docker container.
-#
-#       way/
-# Share our local ~/.ssh/ folder into the docker container which allows
-# us to use our local credentials when connecting to github.
-#
+#       outcome/
 # Set up the everlife docker and the QWERT application
-#
 function setup() {
     echo Setting up everlife docker...
     docker build -t everlifeai/elife .
-    docker run -it --rm \
-        -v "$(pwd):/code" \
-        -v "$HOME/.ssh:/root/.ssh" \
-        -w "/code" \
-        -e "HOME=/tmp" \
-        everlifeai/elife ./run.sh update_node_deps
 
     echo Setting up QWERT...
     if [ -d qwert ]
@@ -163,7 +149,6 @@ function run_avatar_docker() {
         -v "$(pwd):/code" \
         -v "$DATADIR:/data" \
         -v "$SKILLDIR:/skills" \
-        -v "$HOME/.ssh:/root/.ssh" \
         -w "/code" \
         -e "HOME=/tmp" \
         -e ELIFE_DATADIR="$DATADIR" \

@@ -24,6 +24,7 @@ repositories.
 
 - [Set up ssh access to Github](https://help.github.com/articles/connecting-to-github-with-ssh/)
 - Install Docker
+- Copy the `.ssh/` folder to the local `elife`
 - `./run.sh setup` && `./run.sh avatar`
 
 And you're good to go!
