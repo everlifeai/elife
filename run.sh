@@ -145,12 +145,20 @@ function run_avatar_docker() {
         RM=""
     fi
 
+    if [ -d "$HOME/.ssh" ]
+    then
+        SSH_DOCKER_PARAM=(-v "$HOME/.ssh:/root/.ssh")
+    else
+        SSH_DOCKER_PARAM=()
+    fi
+
     docker run -it $RM \
         -v "$(pwd):/code" \
         -v "$DATADIR:/data" \
         -v "$SKILLDIR:/skills" \
         -w "/code" \
         -e "HOME=/tmp" \
+        ${SSH_DOCKER_PARAM[@]} \
         -e ELIFE_DATADIR="$DATADIR" \
         -e ELIFE_SKILLDIR="$SKILLDIR" \
         -e COTE_ENV="$COTE_ENV" \
