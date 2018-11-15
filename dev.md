@@ -24,10 +24,50 @@ repositories.
 
 - [Set up ssh access to Github](https://help.github.com/articles/connecting-to-github-with-ssh/)
 - Install Docker
-- Copy the `.ssh/` folder to the local `elife`
 - `./run.sh setup` && `./run.sh avatar`
 
-And you're good to go!
+Now just set up your stellar wallet (as described below), and you're
+good to go!
+
+
+## Set up your Stellar Wallet
+
+In order to safeguard the wallet, it is password protected. So that the
+user does not need to type in this password again and again it needs to
+be saved once. In order to do this you need to do the following:
+
+1. Load the node
+
+        $> ./run.sh enter
+
+2. Go to the Stellar Server
+
+        # cd services/elife-stellar
+
+3. Run the password manager
+
+        # node pw
+
+When prompted for the password, pick a good password that you are
+comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT **CANNOT BE
+RECOVERED**.
+
+### Migrating old nodes (from version < 3.0.0)
+If you have installed a node earlier than version 3.0.0, you will need
+to migrate your stellar wallet to be compatible with the latest version.
+
+Steps to do this:
+
+1. Download
+   [lu-migrate](https://github.com/theproductiveprogrammer/lu-migrate)
+2. Point it to your stellar account. You will find your account in the
+   `elife.data/stellar/` directory. The filename will end with
+   `.stellar`
+
+        yarn start --to v2 /path/to/elife.data/stellar/wallet-...
+
+3. Start your node
+
 
 ## Stopping your avatar
 

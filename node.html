@@ -84,6 +84,19 @@ be saved once. In order to do this you need to do the following:</p>
 <p>When prompted for the password, pick a good password that you are
 comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT <strong>CANNOT BE
 RECOVERED</strong>.</p>
+<h3 id="migrating-old-nodes-from-version--300">Migrating old nodes (from version &lt; 3.0.0)</h3>
+<p>If you have installed a node earlier than version 3.0.0, you will need
+to migrate your stellar wallet to be compatible with the latest version.</p>
+<p>Steps to do this:</p>
+<ol>
+<li><p>Download
+<a href="https://github.com/theproductiveprogrammer/lu-migrate">lu-migrate</a></p></li>
+<li><p>Point it to your stellar account. You will find your account in the
+<code>elife.data/stellar/</code> directory. The filename will end with
+<code>.stellar</code></p>
+<pre><code>yarn start --to v2 /path/to/elife.data/stellar/wallet-...</code></pre></li>
+<li><p>Start your node</p></li>
+</ol>
 <h2 id="your-data">Your Data</h2>
 <p>The avatar's data always lives in an adjoining folder <code>elife.data</code>. It
 is recommended that you backup this folder as it contains your

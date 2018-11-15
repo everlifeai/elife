@@ -49,10 +49,38 @@ repositories.</p>
 <ul>
 <li><a href="https://help.github.com/articles/connecting-to-github-with-ssh/">Set up ssh access to Github</a></li>
 <li>Install Docker</li>
-<li>Copy the <code>.ssh/</code> folder to the local <code>elife</code></li>
 <li><code>./run.sh setup</code> &amp;&amp; <code>./run.sh avatar</code></li>
 </ul>
-<p>And you're good to go!</p>
+<p>Now just set up your stellar wallet (as described below), and you're
+good to go!</p>
+<h2 id="set-up-your-stellar-wallet">Set up your Stellar Wallet</h2>
+<p>In order to safeguard the wallet, it is password protected. So that the
+user does not need to type in this password again and again it needs to
+be saved once. In order to do this you need to do the following:</p>
+<ol>
+<li><p>Load the node</p>
+<pre><code>$&gt; ./run.sh enter</code></pre></li>
+<li><p>Go to the Stellar Server</p>
+<pre><code># cd services/elife-stellar</code></pre></li>
+<li><p>Run the password manager</p>
+<pre><code># node pw</code></pre></li>
+</ol>
+<p>When prompted for the password, pick a good password that you are
+comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT <strong>CANNOT BE
+RECOVERED</strong>.</p>
+<h3 id="migrating-old-nodes-from-version--300">Migrating old nodes (from version &lt; 3.0.0)</h3>
+<p>If you have installed a node earlier than version 3.0.0, you will need
+to migrate your stellar wallet to be compatible with the latest version.</p>
+<p>Steps to do this:</p>
+<ol>
+<li><p>Download
+<a href="https://github.com/theproductiveprogrammer/lu-migrate">lu-migrate</a></p></li>
+<li><p>Point it to your stellar account. You will find your account in the
+<code>elife.data/stellar/</code> directory. The filename will end with
+<code>.stellar</code></p>
+<pre><code>yarn start --to v2 /path/to/elife.data/stellar/wallet-...</code></pre></li>
+<li><p>Start your node</p></li>
+</ol>
 <h2 id="stopping-your-avatar">Stopping your avatar</h2>
 <p>Your avatar will keep running in the background and is expected to run
 even after you restart your machine. To stop the avatar please run:</p>

@@ -75,6 +75,22 @@ When prompted for the password, pick a good password that you are
 comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT **CANNOT BE
 RECOVERED**.
 
+### Migrating old nodes (from version < 3.0.0)
+If you have installed a node earlier than version 3.0.0, you will need
+to migrate your stellar wallet to be compatible with the latest version.
+
+Steps to do this:
+
+1. Download
+   [lu-migrate](https://github.com/theproductiveprogrammer/lu-migrate)
+2. Point it to your stellar account. You will find your account in the
+   `elife.data/stellar/` directory. The filename will end with
+   `.stellar`
+
+        yarn start --to v2 /path/to/elife.data/stellar/wallet-...
+
+3. Start your node
+
 
 ## Your Data
 
