@@ -197,14 +197,9 @@ function stop() {
 # once the docker virtual machine has started up
 #
 #       outcome/
-# Start the redis server, wait 10 seconds so it has time to start up,
-# then start the node
-#
-# TODO: Start default AI service here as well?
+# Start the node using yarn
 #
 function cnt_start_avatar() {
-    start_redis
-    sleep 10
     yarn start
 }
 

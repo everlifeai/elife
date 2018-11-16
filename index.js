@@ -37,36 +37,31 @@ function loadConfig() {
  * These core processes include:
  * 1. The Scuttlebot Immortal Feed and Replication
  * 2. A Database for storing working data
- * 3. A Work Queue for managing and distributing work (with a worker
- * pool)
- * 4. A Skill Manager for installing, running, and managing skills
+ * 3. A Skill Manager for installing, running, and managing skills
  *      - Infrastructure Skills (as hub/as host/...)
  *      - Worker skills (twitter svc, vanity address, ...)
- * 5. A Communication Manager for installing, running, and managing
+ * 4. A Communication Manager for installing, running, and managing
  * communication channels
       - Telegram channel
       - Messenger channel
       - Alexa channel
       - Web channel
       - ...
- * 6. An AI for understanding and managing user interaction and
+ * 5. An AI for understanding and managing user interaction and
  * strategies for earning
  *    - Cakechat (python with microservices relay...)
  *    - ...
- * 7. The stellar blockchain interface for payments, receipts, and smart
+ * 6. The stellar blockchain interface for payments, receipts, and smart
  * contracts.
  *
  * The avatar downloads, installs, and starts the core processes.
  *
- * TODO: Add and enable all core components
  * TODO: Monitoring and regulating component CPU/Memory/Disk usage
- * TODO: Embed Redis for Queue Management
  */
 function startCoreProcesses(cfg) {
     const core_procs = [
         { pkg: "everlifeai/elife-sbot" },
         { pkg: "everlifeai/elife-level-db" },
-        { pkg: "everlifeai/elife-work-queue" },
         { pkg: "everlifeai/elife-skill-mgr" },
         { pkg: "everlifeai/elife-ai" },
         { pkg: "everlifeai/elife-communication-mgr" },
