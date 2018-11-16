@@ -89,13 +89,22 @@ RECOVERED</strong>.</p>
 to migrate your stellar wallet to be compatible with the latest version.</p>
 <p>Steps to do this:</p>
 <ol>
+<li><p>Make a backup of your existing password file. You will find this
+hidden file in your <code>elife.data</code> folder with the name <code>.luminate-pw</code>:</p>
+<pre><code>mv elife.data/.luminate-pw &lt;some backup location&gt;</code></pre></li>
+<li><p>Regenerate your Stellar Wallet password by using the same steps
+above. <em>You must use the same password you have used when setting up
+the node</em>.</p>
+<pre><code>#&gt; ./run.sh enter
+# cd services/elife-stellar
+# node pw</code></pre></li>
 <li><p>Download
 <a href="https://github.com/theproductiveprogrammer/lu-migrate">lu-migrate</a></p></li>
 <li><p>Point it to your stellar account. You will find your account in the
 <code>elife.data/stellar/</code> directory. The filename will end with
 <code>.stellar</code></p>
 <pre><code>yarn start --to v2 /path/to/elife.data/stellar/wallet-...</code></pre></li>
-<li><p>Start your node</p></li>
+<li><p>Start your node and you're ready to go</p></li>
 </ol>
 <h2 id="your-data">Your Data</h2>
 <p>The avatar's data always lives in an adjoining folder <code>elife.data</code>. It
