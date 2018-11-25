@@ -4,6 +4,10 @@ const path = require('path')
 const pkgmgr = require('elife-pkg-mgr')
 const u = require('elife-utils')
 
+if(!process.env.IN_DOCKER){
+    const dotenv = require('dotenv').config({ path : 'cfg.env'})
+}
+
 /*      understand/
  * This is the main entry point where we start.
  *
