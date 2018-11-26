@@ -16,6 +16,7 @@
     "elife-utils": "everlifeai/elife-utils",
     "pm2": "^3.0.3",
     "shortid": "^2.2.13",
-    "showdown": "^1.8.6"
+    "showdown": "^1.8.6",
+    "dotenv": "^6.1.0"
   }
 }

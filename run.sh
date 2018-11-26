@@ -165,6 +165,7 @@ function run_avatar_docker() {
         -e SSB_HOST="$SSB_HOST" \
         -e SSB_PORT="$SSB_PORT" \
         -e QWERT_PORT="$QWERT_PORT" \
+        -e IN_DOCKER='1' \
         -p "$SSB_PORT:$SSB_PORT" \
         -p "$QWERT_PORT:$QWERT_PORT" \
         --name "${NAME}" \
