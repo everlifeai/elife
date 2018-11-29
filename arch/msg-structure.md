@@ -183,7 +183,27 @@ The `key` and `msg` are randomly created for the canary so they are more
 easily identified.
 
 ## Chat Message
-*TODO*
+
+This message is used to capture the conversational exchange between the
+user and his avatar. Such messages are likely to be useful data in
+improving conversations as the avatar matures.
+
+```js
+{
+  type: 'chat-log',
+  channel: 'telegram', // etc
+  msgs: [
+    { who: 'user',
+      txt: 'Hi'    // message text
+    },
+    { who: 'bot',
+      txt: 'Good morning!'
+    },
+  ],
+}
+```
+
+These messages are stored encrypted to ensure the user's privacy.
 
 ## Direct Message
 *TODO*
