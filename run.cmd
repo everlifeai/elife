@@ -10,6 +10,8 @@ IF NOT EXIST c:\skills mkdir c:\skills
 set SSB_PORT=8997
 set QWERT_PORT=7766
 
+for /f %%i in ('yarn -s part') do set COTE_ENV=%%i
+
 :: Handle user commands
 if [%1]==[] goto:help
 if %1==setup  node services\elife-stellar\pw goto:eof 
