@@ -11,6 +11,7 @@ const shortid = require('shortid')
 function main() {
     let args = getArgs()
     if(args.help) showHelp()
+    else if(args['info']) showInfo()
     else if(args['gui']) launchGUI()
     else if(args['rm-node-modules']) removeNodeModules()
     else if(args['rm-yarn-lock']) removeYarnLock()
@@ -28,7 +29,8 @@ function main() {
 function getArgs() {
     const ops = [
         { name: 'help', alias: 'h', type: Boolean },
-        { name: 'gui', type: Boolean },
+        { name: 'gui', alias: 'g', type: Boolean },
+        { name: 'info', alias: 'i', type: Boolean },
         { name: 'rm-node-modules', type: Boolean },
         { name: 'rm-yarn-lock', type: Boolean },
         { name: 'node-num', alias: 'n' },
@@ -40,7 +42,8 @@ function getArgs() {
 function showHelp() {
     shell.echo(`Start avatar node
 
-    --gui  : Run the default GUI client (QWERT)
+    --info,i    : Show information about the installed avatar
+    --gui,g     : Run the default GUI client (QWERT)
 
 Also accepts the following options (usually for devs)
     --rm-node-modules   : Remove all node modules
@@ -50,6 +53,15 @@ Also accepts the following options (usually for devs)
 
     --help, -h          : show this help
 `)
+}
+
+function showInfo() {
+    const { version } = require('./package.json')
+    shell.echo(`Avatar node (version ${version})`)
+    shell.echo(`Installed in:`)
+    shell.echo(`    ${shell.pwd()}`)
+    shell.echo(`Data stored in: (BACKUP THIS FOLDER)`)
+    shell.echo(`    ${u.dataLoc()}`)
 }
 
 function launchGUI() {
