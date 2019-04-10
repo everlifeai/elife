@@ -125,8 +125,10 @@ function avatarStructure() {
         { required: "services/elife-ai/brains/ebrain-aiml/aiml" },
 
         { required: "services/elife-level-db" },
+
         { required: "services/elife-stellar" },
-        { required: "services/elife-sbot" },
+
+        { required: "services/elife-sbot", postInstall: "node fixAppKey" },
 
         { required: "services/elife-communication-mgr" },
         { dir: "services/elife-communication-mgr/channels" },
@@ -155,9 +157,9 @@ function setupAvatarComponents() {
     let structure = avatarStructure()
     for(let i = 0;i < structure.length;i++) {
         let s = structure[i]
-        if(s.required) if(!installRequired(s.required)) return false
+        if(s.required) if(!install(s)) return false
         if(s.dir) if(!mkdir(s.dir)) return false
-        if(s.optional) installOptional(s.optional)
+        if(s.optional) install(s)
     }
 
     return true
@@ -236,18 +238,15 @@ function mkdir(d) {
     return true
 }
 
-function installRequired(repo) {
-    shell.echo(`Checking required: ${repo}`)
-    if(!createRepo(repo)) return false
-    if(!setupRepo(repo)) return false
+function install(what) {
+    if(!what.required && !what.optional) return false
+    let repo = what.required ? what.required : what.optional
 
-    return true
-}
+    let type_ = what.required ? 'required' : 'optional'
+    shell.echo(`Checking ${type_}: ${repo}`)
 
-function installOptional(repo) {
-    shell.echo(`Checking optional: ${repo}`)
     if(!createRepo(repo)) return false
-    if(!setupRepo(repo)) return false
+    if(!setupRepo(repo, what.postInstall)) return false
 
     return true
 }
@@ -288,11 +287,10 @@ function createRepo(rp) {
     return true
 }
 
-function setupRepo(rp) {
-    return setupNodeModules(rp)
-}
-
-function setupNodeModules(rp) {
+/*      outcome/
+ * Set up the node_modules and run any post install scripts
+ */
+function setupRepo(rp, postInstall) {
     if(shell.test("-d", path.join(rp,'node_modules'))) return true
     if(!shell.test("-f", path.join(rp,'package.json'))) return true
     shell.echo(`Setting up: ${rp}`)
@@ -310,6 +308,16 @@ function setupNodeModules(rp) {
         shell.echo(`Failed to yarn install in: ${rp}`)
         shell.popd('-q')
         return false
+    }
+
+    if(postInstall) {
+        shell.echo(`Running post-install: ${postInstall}`)
+        r = shell.exec(postInstall)
+        if(r.code) {
+            shell.echo(`Failed to run post-install: ${postInstall}`)
+            shell.popd('-q')
+            return false
+        }
     }
 
     r = shell.popd('-q')
