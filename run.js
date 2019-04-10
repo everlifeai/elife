@@ -20,6 +20,7 @@ function main() {
         setupEnvironmentVariables(args)
         setupHomeFolders()
         setupWallet()
+        setupUserConfig()
         startAvatar()
     }
 }
@@ -227,6 +228,34 @@ to set up your avatar's wallet password before you continue
 ===========================================================
 `)
     shell.exit(1)
+}
+
+/*      outcome/
+ * If the user configuration file does not exist, create a template that
+ * they can fill in.
+ */
+function setupUserConfig() {
+    let cfg = path.join(u.dataLoc(), 'cfg.env')
+    if(shell.test("-f", cfg)) return
+
+    shell.echo(`\n\nCreating configuration file...`)
+    shell.echo(`#       understand/
+# We use environment variables to configure various skills and services.
+# In order to pass the information to the required components we need to
+# set them in this file.
+
+# For Telegram Channel
+TELEGRAM_TOKEN=
+
+# For what-wine skill
+MASHAPE_KEY=
+
+# for AI Artist Skill
+AIARTIST_HOST=
+AIARTIST_PORT=
+`).to(cfg)
+    shell.echo(`Please edit this file: ${cfg}`)
+    shell.echo(`To add your own TELEGRAM_TOKEN, etc...\n\n`)
 }
 
 function mkdir(d) {
