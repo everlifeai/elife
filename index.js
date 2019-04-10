@@ -5,7 +5,7 @@ const pkgmgr = require('elife-pkg-mgr')
 const u = require('elife-utils')
 
 if(!process.env.IN_DOCKER){
-    const dotenv = require('dotenv').config({ path : 'cfg.env'})
+    const dotenv = require('dotenv').config({ path : path.join(u.dataLoc(),'cfg.env')})
 }
 
 /*      understand/
@@ -126,5 +126,11 @@ function startProcess(cfg, cwd, cb) {
     }
     pm2.start(opts, cb)
 }
+
+process.on('exit', () => {
+    pm2.connect(true, (err) => {
+        pm2.stop('all')
+    })
+})
 
 main()
