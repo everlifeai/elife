@@ -96,6 +96,7 @@ function removeNodeModules() {
             }
         }
     }
+    shell.echo(`Remember to remove './node_modules' manually (needed for this script to run)`)
 }
 
 function removeYarnLock() {
@@ -113,6 +114,7 @@ function removeYarnLock() {
             }
         }
     }
+    shell.rm('yarn.lock')
 }
 
 function checkForRequiredInstalls() {
