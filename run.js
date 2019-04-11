@@ -20,6 +20,7 @@ function main() {
         setupAvatarComponents()
         setupEnvironmentVariables(args)
         setupHomeFolders()
+        migrateOldData()
         setupWallet()
         setupUserConfig()
         startAvatar()
@@ -223,6 +224,53 @@ function partitionParam() {
 function setupHomeFolders() {
     mkdir(u.dataLoc())
     mkdir(u.skillLoc())
+}
+
+/*      problem/
+ * The current data folders are 'better' located but for those that have
+ * already installed the avatar's they have their data in different
+ * locations and should be able to continue to use them.
+ *
+ *      way/
+ * If the new data folder is empty we look into the old data folder:
+ *      ../elife.data
+ *      OR
+ *      /data
+ * and we move all the existing data (__ssb/, kb/, stellar/, level.db/,
+ * .luminate-pw, cfg.env) to the new folder.
+ */
+function migrateOldData() {
+    let dl = u.dataLoc()
+    let existing = shell.ls(dl)
+    if(shell.error()) {
+        shell.echo(`Failed checking data directory for migration: ${dl}`)
+        shell.exit(1)
+    }
+    if(existing.length > 0) return
+
+    let old = find_old_data_dir_1()
+    if(!old) return
+
+
+    shell.echo(`\n\nMigrating from: ${old} to: ${dl}`)
+    let datalist = [
+        '__ssb', 'kb', 'stellar', 'level.db', '.luminate-pw', 'cfg.env',
+    ]
+    for(let i = 0;i < datalist.length;i++) {
+        let from = path.join(old, datalist[i])
+        if(shell.test("-e", from)) {
+            shell.echo(`Moving: ${from} to: ${dl}`)
+            shell.mv(from, dl)
+        }
+    }
+    shell.echo(`Migration of existing data done...\n\n`)
+
+
+    function find_old_data_dir_1() {
+        if(shell.test("-d",'/data')) return '/data'
+        let d = path.join(shell.pwd().toString(),'../elife.data')
+        if(shell.test("-d",d)) return d
+    }
 }
 
 /*      outcome/
