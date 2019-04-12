@@ -745,8 +745,8 @@ double-ended-queue@^2.1.0-0:
   integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
 
 elife-pkg-mgr@everlifeai/elife-pkg-mgr:
-  version "0.1.0"
-  resolved "https://codeload.github.com/everlifeai/elife-pkg-mgr/tar.gz/e5463714ce8e3c1d668e177cc2a9cc27f55e92ff"
+  version "0.2.0"
+  resolved "https://codeload.github.com/everlifeai/elife-pkg-mgr/tar.gz/4b733641e1cf0c42900ea8b3b6c1847b600c0275"
   dependencies:
     elife-utils everlifeai/elife-utils
 
