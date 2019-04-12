@@ -22,6 +22,7 @@ function main() {
         setupHomeFolders()
         migrateOldData()
         setupWallet()
+        checkCoteConnection()
         setupUserConfig()
         startAvatar()
     }
@@ -290,6 +291,13 @@ to set up your avatar's wallet password before you continue
 ===========================================================
 `)
     shell.exit(1)
+}
+
+/*      outcome/
+ * Run the cote connection checker
+ */
+function checkCoteConnection() {
+    shell.exec(`node ccc`)
 }
 
 /*      outcome/
