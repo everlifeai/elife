@@ -127,10 +127,18 @@ function startProcess(cfg, cwd, cb) {
     pm2.start(opts, cb)
 }
 
+process.on('SIGINT', () => {
+    stopAllChildProcesses()
+})
+
 process.on('exit', () => {
+    stopAllChildProcesses()
+})
+
+function stopAllChildProcesses() {
     pm2.connect(true, (err) => {
         pm2.stop('all')
     })
-})
+}
 
 main()
