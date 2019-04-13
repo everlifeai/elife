@@ -23,6 +23,7 @@ function main() {
         migrateOldData()
         setupWallet()
         checkCoteConnection()
+        showCotePartition()
         setupUserConfig()
         startAvatar()
     }
@@ -298,6 +299,16 @@ to set up your avatar's wallet password before you continue
  */
 function checkCoteConnection() {
     shell.exec(`node ccc`)
+}
+
+/*      outcome/
+ * Show the CoteJS partition parameter
+ */
+function showCotePartition() {
+    shell.echo(`
+FYI: Microservice Partition Key (for development):
+    COTE_ENV=${shell.env.COTE_ENV}
+`)
 }
 
 /*      outcome/
