@@ -15,6 +15,7 @@ function main() {
     else if(args['gui']) launchGUI()
     else if(args['rm-node-modules']) removeNodeModules()
     else if(args['rm-yarn-lock']) removeYarnLock()
+    else if(args['gen-docs']) generateDocs()
     else {
         checkForRequiredInstalls()
         setupAvatarComponents()
@@ -36,6 +37,7 @@ function getArgs() {
         { name: 'info', alias: 'i', type: Boolean },
         { name: 'rm-node-modules', type: Boolean },
         { name: 'rm-yarn-lock', type: Boolean },
+        { name: 'gen-docs', type: Boolean },
         { name: 'node-num', alias: 'n' },
     ]
 
@@ -118,6 +120,10 @@ function removeYarnLock() {
         }
     }
     shell.rm('yarn.lock')
+}
+
+function generateDocs() {
+    shell.exec(`yarn docs`)
 }
 
 function checkForRequiredInstalls() {
