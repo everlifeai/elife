@@ -34,30 +34,29 @@
 <strong>Everlife</strong> avatar on your own machines.</p>
 <p><img src="avatar_256x256.png" alt="Avatar" /></p>
 <h2 id="pre-requisites">Pre-requisites</h2>
-<p>In order to make it easy for you to deploy, rather than needing you to
-install all the various dependencies that the avatar requires, we have
-packaged the avatar into a Docker container.</p>
-<h3 id="mac-pre-requisities">Mac Pre-requisities</h3>
 <ol>
-<li>Install <a href="https://store.docker.com/editions/community/docker-ce-desktop-mac">Docker</a></li>
-<li>Install Yarn: <code>brew install yarn</code></li>
+<li>Install <a href="https://yarnpkg.com/">Yarn</a></li>
+<li>Install <a href="https://www.python.org/">Python 2.7</a></li>
 </ol>
-<h3 id="windows-pre-requisities">Windows Pre-requisities</h3>
+<h3 id="additional-windows-pre-requisities">Additional Windows Pre-requisities</h3>
 <ol>
-<li>Install <a href="https://store.docker.com/editions/community/docker-ce-desktop-windows">Docker</a></li>
 <li>Install Cygwin: <a href="https://www.cygwin.com/setup-x86_64.exe">64 Bit Version</a> or
 <a href="https://www.cygwin.com/setup-x86.exe">32 Bit Version</a></li>
-<li>Install <a href="https://yarnpkg.com/latest.msi">Yarn</a></li>
 </ol>
-<p>To get started, please ensure you have started Docker from Desktop Shortcuts.</p>
 <h2 id="setup">Setup</h2>
-<p>In order to get a working avatar, you need to set it up and configure
-<a href="the://telegram.org">Telegram</a> communication channel with it. The steps
+<p>There are three run scripts: (<code>./run-mac.sh</code>, <code>./run-linux.sh</code>,
+<code>run-win.cmd</code>). Pick the one appropriate to your platform and use it:</p>
+<pre><code>    $&gt; ./run-mac.sh</code></pre>
+<p>The first time it runs it will set up your environment for you.</p>
+<h2 id="talking-over-the-built-in-chatbot-qwert">Talking over the built-in chatbot (QWERT)</h2>
+<p>Your Avatar comes with a built-in chatbot with the strange name of
+QWERT. To start it simply run:</p>
+<pre><code>    $&gt; ./run-mac.sh --gui   (or ./run-mac.sh -g)</code></pre>
+<h2 id="talking-over-telegram">Talking over Telegram</h2>
+<p>In order to talk with your avatar over <a href="the://telegram.org">Telegram</a>
+you only need to set up communication channel with it. The steps
 for doing this are as follows:</p>
 <ol>
-<li><p>Unzip the avatar into your <code>$HOME</code> directory</p></li>
-<li><p>Run</p>
-<pre><code>./run.sh setup</code></pre></li>
 <li><p>Go to <a href="https://telegram.me/botfather">Telegram</a> to create a bot by
 typing</p>
 <p><code>/newbot</code></p>
@@ -66,59 +65,11 @@ typing</p>
 authorization token for your new bot. The token is a string along the
 lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. </p></li>
 <li><p>We now need to link this new telegram bot with your avatar. To do
-this, simply save the telegram token in
-<a href="../elife.data/cfg.env">../elife.data/cfg.env</a></p></li>
+this, simply save the telegram token in <code>$YOUR_DATA_FOLDER/cfg.env</code></p></li>
 </ol>
-<h2 id="set-up-your-stellar-wallet">Set up your Stellar Wallet</h2>
-<p>In order to safeguard the wallet, it is password protected. So that the
-user does not need to type in this password again and again it needs to
-be saved once. In order to do this you need to do the following:</p>
-<ol>
-<li><p>Load the node</p>
-<pre><code>$&gt; ./run.sh enter</code></pre></li>
-<li><p>Go to the Stellar Server</p>
-<pre><code># cd services/elife-stellar</code></pre></li>
-<li><p>Run the password manager</p>
-<pre><code># node pw</code></pre></li>
-</ol>
-<p>When prompted for the password, pick a good password that you are
-comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT <strong>CANNOT BE
-RECOVERED</strong>.</p>
-<h3 id="migrating-old-nodes-from-version--300">Migrating old nodes (from version &lt; 3.0.0)</h3>
-<p>If you have installed a node earlier than version 3.0.0, you will need
-to migrate your stellar wallet to be compatible with the latest version.</p>
-<p>Steps to do this:</p>
-<ol>
-<li><p>Make a backup of your existing password file. You will find this
-hidden file in your <code>elife.data</code> folder with the name <code>.luminate-pw</code>:</p>
-<pre><code>mv elife.data/.luminate-pw &lt;some backup location&gt;</code></pre></li>
-<li><p>Regenerate your Stellar Wallet password by using the same steps
-above. <em>You must use the same password you have used when setting up
-the node</em>.</p>
-<pre><code>#&gt; ./run.sh enter
-# cd services/elife-stellar
-# node pw</code></pre></li>
-<li><p>Download
-<a href="https://github.com/theproductiveprogrammer/lu-migrate">lu-migrate</a></p></li>
-<li><p>Point it to your stellar account. You will find your account in the
-<code>elife.data/stellar/</code> directory. The filename will end with
-<code>.stellar</code></p>
-<pre><code>yarn start --to v2 /path/to/elife.data/stellar/wallet-...</code></pre></li>
-<li><p>Start your node and you're ready to go</p></li>
-</ol>
-<h2 id="your-data">Your Data</h2>
-<p>The avatar's data always lives in an adjoining folder <code>elife.data</code>. It
-is recommended that you backup this folder as it contains your
-<code>Everchain</code>, your <code>database</code>, and your <code>Stellar</code> wallet.</p>
-<p><strong><code>elife.db</code></strong> <img src="db.png" alt="db" /></p>
-<h2 id="starting-and-chatting-with-your-avatar">Starting and Chatting with Your Avatar</h2>
-<p>Now that your avatar is set up you can start him up by running</p>
-<pre><code>    ./run.sh avatar</code></pre>
-<p>Now you can go to your Telegram and start chatting!</p>
-<h2 id="stopping-your-avatar">Stopping your avatar</h2>
-<p>Your avatar will keep running in the background and is expected to run
-even after you restart your machine. To stop the avatar please run:</p>
-<pre><code>    ./run.sh stop</code></pre>
+<h2 id="your-data-folder">Your Data Folder</h2>
+<p>In order to find your data folder simply run:</p>
+<pre><code>    $&gt; ./run-mac.sh --info</code></pre>
 <h2 id="next-steps">Next steps</h2>
 <ol>
 <li><p>Join the Everlife network through an <strong>Avatar Hub</strong>.Contact our

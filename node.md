@@ -7,35 +7,39 @@ This document contains instructions for setting up and running your
 
 
 ## Pre-requisites
-In order to make it easy for you to deploy, rather than needing you to
-install all the various dependencies that the avatar requires, we have
-packaged the avatar into a Docker container.
 
-### Mac Pre-requisities
+1. Install [Yarn](https://yarnpkg.com/)
+2. Install [Python 2.7](https://www.python.org/)
 
-1. Install [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-2. Install Yarn: `brew install yarn`
+### Additional Windows Pre-requisities
 
-### Windows Pre-requisities
-
-1. Install [Docker](https://store.docker.com/editions/community/docker-ce-desktop-windows)
-2. Install Cygwin: [64 Bit Version](https://www.cygwin.com/setup-x86_64.exe) or
+1. Install Cygwin: [64 Bit Version](https://www.cygwin.com/setup-x86_64.exe) or
    [32 Bit Version](https://www.cygwin.com/setup-x86.exe)
-3. Install [Yarn](https://yarnpkg.com/latest.msi)
 
-To get started, please ensure you have started Docker from Desktop Shortcuts.
 
 
 ## Setup
 
-In order to get a working avatar, you need to set it up and configure
-[Telegram](the://telegram.org) communication channel with it. The steps
+There are three run scripts: (`./run-mac.sh`, `./run-linux.sh`,
+`run-win.cmd`). Pick the one appropriate to your platform and use it:
+
+        $> ./run-mac.sh
+
+The first time it runs it will set up your environment for you.
+
+
+## Talking over the built-in chatbot (QWERT)
+
+Your Avatar comes with a built-in chatbot with the strange name of
+QWERT. To start it simply run:
+
+        $> ./run-mac.sh --gui   (or ./run-mac.sh -g)
+
+
+## Talking over Telegram
+In order to talk with your avatar over [Telegram](the://telegram.org)
+you only need to set up communication channel with it. The steps
 for doing this are as follows:
-
-1. Unzip the avatar into your `$HOME` directory
-1. Run
-
-        ./run.sh setup
 
 1. Go to [Telegram](https://telegram.me/botfather) to create a bot by
    typing
@@ -48,89 +52,15 @@ for doing this are as follows:
    authorization token for your new bot. The token is a string along the
    lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. 
 1. We now need to link this new telegram bot with your avatar. To do
-   this, simply save the telegram token in
-   [../elife.data/cfg.env](../elife.data/cfg.env)
+   this, simply save the telegram token in `$YOUR_DATA_FOLDER/cfg.env`
 
 
+## Your Data Folder
 
-## Set up your Stellar Wallet
+In order to find your data folder simply run:
 
-In order to safeguard the wallet, it is password protected. So that the
-user does not need to type in this password again and again it needs to
-be saved once. In order to do this you need to do the following:
+        $> ./run-mac.sh --info
 
-1. Load the node
-
-        $> ./run.sh enter
-
-2. Go to the Stellar Server
-
-        # cd services/elife-stellar
-
-3. Run the password manager
-
-        # node pw
-
-When prompted for the password, pick a good password that you are
-comfortable with. PLEASE REMEMBER THIS PASSWORD AS IT **CANNOT BE
-RECOVERED**.
-
-### Migrating old nodes (from version < 3.0.0)
-If you have installed a node earlier than version 3.0.0, you will need
-to migrate your stellar wallet to be compatible with the latest version.
-
-Steps to do this:
-
-1. Make a backup of your existing password file. You will find this
-   hidden file in your `elife.data` folder with the name `.luminate-pw`:
-
-        mv elife.data/.luminate-pw <some backup location>
-
-2. Regenerate your Stellar Wallet password by using the same steps
-   above. *You must use the same password you have used when setting up
-   the node*.
-
-        #> ./run.sh enter
-        # cd services/elife-stellar
-        # node pw
-
-3. Download
-   [lu-migrate](https://github.com/theproductiveprogrammer/lu-migrate)
-4. Point it to your stellar account. You will find your account in the
-   `elife.data/stellar/` directory. The filename will end with
-   `.stellar`
-
-        yarn start --to v2 /path/to/elife.data/stellar/wallet-...
-
-5. Start your node and you're ready to go
-
-
-## Your Data
-
-The avatar's data always lives in an adjoining folder `elife.data`. It
-is recommended that you backup this folder as it contains your
-`Everchain`, your `database`, and your `Stellar` wallet.
-
-**`elife.db`** ![db](db.png)
-
-
-
-## Starting and Chatting with Your Avatar
-
-Now that your avatar is set up you can start him up by running
-
-        ./run.sh avatar
-
-
-Now you can go to your Telegram and start chatting!
-
-
-## Stopping your avatar
-
-Your avatar will keep running in the background and is expected to run
-even after you restart your machine. To stop the avatar please run:
-
-        ./run.sh stop
 
 
 ## Next steps
