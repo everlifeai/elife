@@ -164,6 +164,7 @@ function avatarStructure() {
         { required: "services/elife-skill-mgr/skills/eskill-intro" },
         { required: "services/elife-skill-mgr/skills/eskill-about" },
         { required: "services/elife-skill-mgr/skills/eskill-follower" },
+        { required: "services/elife-skill-mgr/skills/eskill-nw" },
 
         { optional: "services/elife-skill-mgr/skills/eskill-vanity-address" },
         { optional: "services/elife-skill-mgr/skills/eskill-kb-creator" },
