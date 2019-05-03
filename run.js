@@ -197,6 +197,7 @@ function setupAvatarComponents() {
  * partition environment variable
  */
 function setupEnvironmentVariables(args) {
+    shell.env['ELIFE_INSTALL_FOLDER'] = shell.pwd()
     shell.env['ELIFE_HOME'] = u.homeLoc()
     let nn = "0"
     if(args['node-num']) nn = args['node-num']
