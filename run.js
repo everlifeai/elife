@@ -389,7 +389,7 @@ function createRepo(rp) {
         return false
     }
 
-    r = shell.exec(`git clone git@github.com:everlifeai/${repo}.git`)
+    r = shell.exec(`git clone https://github.com/everlifeai/${repo}.git`)
     if(r.code) {
         shell.echo(`Failed to download git repo: ${repo}`)
         shell.popd('-q')
