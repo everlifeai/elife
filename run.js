@@ -139,7 +139,7 @@ function checkForRequiredInstalls() {
  */
 function avatarStructure() {
     return [
-        { required: "qwert" },
+       
 
         { dir: "services" },
 
@@ -157,7 +157,7 @@ function avatarStructure() {
         { required: "services/elife-communication-mgr" },
         { dir: "services/elife-communication-mgr/channels" },
         { required: "services/elife-communication-mgr/channels/elife-telegram" },
-        { required: "services/elife-communication-mgr/channels/elife-qwert" },
+       
 
         { required: "services/elife-skill-mgr" },
         { dir: "services/elife-skill-mgr/skills" },
