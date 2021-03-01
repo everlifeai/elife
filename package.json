@@ -11,14 +11,20 @@
     "part": "node helpers/partition"
   },
   "dependencies": {
+    "@elife/pkg-mgr": "^4.1.0",
+    "@elife/pm2": "^3.0.0",
+    "@elife/utils": "^2.1.1",
     "command-line-args": "^5.1.1",
     "cote": "^0.17.0",
     "dotenv": "^6.1.0",
     "elife-pkg-mgr": "everlifeai/elife-pkg-mgr",
-    "elife-utils": "everlifeai/elife-utils",
-    "pm2": "^3.0.3",
+    "level": "^6.0.1",
+    "log-timestamp": "^0.3.0",
+    "nodegit": "^0.27.0",
+    "pm2": "^4.5.5",
     "shelljs": "^0.8.3",
     "shortid": "^2.2.13",
-    "showdown": "^1.8.6"
+    "showdown": "^1.8.6",
+    "ssb-server": "^15.3.0"
   }
 }
