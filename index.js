@@ -1,8 +1,8 @@
 'use strict'
 const pm2 = require('pm2')
 const path = require('path')
-const pkgmgr = require('elife-pkg-mgr')
-const u = require('elife-utils')
+const pkgmgr = require('@elife/pkg-mgr')
+const u = require('@elife/utils')
 
 if(!process.env.IN_DOCKER){
     const dotenv = require('dotenv').config({ path : path.join(u.dataLoc(),'cfg.env')})

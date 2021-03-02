@@ -15,7 +15,7 @@ function setup() {
 
 function setup_node_modules() {
     printf "Setting up node_modules...\n"
-    yarn install
+    npm install
     printf "\n\n"
 }
 

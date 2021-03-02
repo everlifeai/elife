@@ -2,7 +2,7 @@
 const shell = require('shelljs')
 const path = require('path')
 const cla = require('command-line-args')
-const u = require('elife-utils')
+const u = require('@elife/utils')
 const shortid = require('shortid')
 
 /*      understand/
@@ -17,7 +17,6 @@ function main() {
     else if(args['rm-yarn-lock']) removeYarnLock()
     else if(args['gen-docs']) generateDocs()
     else {
-        checkForRequiredInstalls()
         setupAvatarComponents()
         setupEnvironmentVariables(args)
         setupHomeFolders()
@@ -78,9 +77,9 @@ function launchGUI() {
         shell.exit(1)
     }
 
-    r = shell.exec(`yarn start`)
+    r = shell.exec(`npm start`)
     if(r.code) {
-        shell.echo(`Failed to run 'yarn start' in qwert/ directory`)
+        shell.echo(`Failed to run 'npm start' in qwert/ directory`)
     }
 
     shell.popd('-q')
@@ -124,13 +123,6 @@ function removeYarnLock() {
 
 function generateDocs() {
     shell.exec(`yarn docs`)
-}
-
-function checkForRequiredInstalls() {
-    if(!shell.which('yarn')) {
-        shell.echo('Please install the yarn package manager to run the Everlife Avatar')
-        shell.exit(1)
-    }
 }
 
 /*      outcome/
@@ -421,9 +413,9 @@ function setupRepo(rp, postInstall) {
         return false
     }
 
-    r = shell.exec(`yarn install`)
+    r = shell.exec(`npm install`)
     if(r.code) {
-        shell.echo(`Failed to yarn install in: ${rp}`)
+        shell.echo(`Failed to npm install in: ${rp}`)
         shell.popd('-q')
         return false
     }
@@ -448,7 +440,7 @@ function setupRepo(rp, postInstall) {
 }
 
 function startAvatar() {
-    shell.exec(`yarn start`)
+    shell.exec(`npm start`)
 }
 
 main()

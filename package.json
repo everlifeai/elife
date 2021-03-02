@@ -17,7 +17,6 @@
     "command-line-args": "^5.1.1",
     "cote": "^0.17.0",
     "dotenv": "^6.1.0",
-    "elife-pkg-mgr": "everlifeai/elife-pkg-mgr",
     "level": "^6.0.1",
     "log-timestamp": "^0.3.0",
     "nodegit": "^0.27.0",
