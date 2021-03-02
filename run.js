@@ -2,7 +2,7 @@
 const shell = require('shelljs')
 const path = require('path')
 const cla = require('command-line-args')
-const u = require('elife-utils')
+const u = require('@elife/utils')
 const shortid = require('shortid')
 
 /*      understand/
