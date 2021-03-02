@@ -5,7 +5,7 @@ SET me=%~n0
 SET parent=%~dp0
 
 :: Set up node_modules
-IF NOT EXIST node_modules yarn install
+IF NOT EXIST node_modules npm install
 
 :: Pass control to run.js
 node run.js %*
