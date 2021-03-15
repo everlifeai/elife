@@ -28,14 +28,6 @@ There are three run scripts: (`./run-mac.sh`, `./run-linux.sh`,
 The first time it runs it will set up your environment for you.
 
 
-## Talking over the built-in chatbot (QWERT)
-
-Your Avatar comes with a built-in chatbot with the strange name of
-QWERT. To start it simply run:
-
-        $> ./run-mac.sh --gui   (or ./run-mac.sh -g)
-
-
 ## Talking over Telegram
 In order to talk with your avatar over [Telegram](the://telegram.org)
 you only need to set up communication channel with it. The steps
