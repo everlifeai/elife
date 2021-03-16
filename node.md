@@ -8,8 +8,9 @@ This document contains instructions for setting up and running your
 
 ## Pre-requisites
 
-1. Install [Yarn](https://yarnpkg.com/)
-2. Install [Python 2.7](https://www.python.org/)
+1. Install [NodeJS](https://nodejs.org/en/download/) LTS Version: 14.16.0 and above
+2. Install [Yarn](https://yarnpkg.com/)
+3. Install [Python 2.7](https://www.python.org/)
 
 ### Additional Windows Pre-requisities
 
