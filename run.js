@@ -226,6 +226,7 @@ function partitionParam() {
 function setupHomeFolders() {
     mkdir(u.dataLoc())
     mkdir(u.skillLoc())
+    mkdir(u.logsLoc())
 }
 
 /*      problem/
