@@ -232,6 +232,7 @@ function setupHomeFolders() {
     mkdir(u.dataLoc())
     mkdir(u.ssbLoc())
     mkdir(u.skillLoc())
+    mkdir(u.logsLoc())
 }
 
 /*      problem/
