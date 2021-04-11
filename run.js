@@ -2,12 +2,19 @@
 const shell = require('shelljs')
 const path = require('path')
 const cla = require('command-line-args')
-const u = require('@elife/utils')
-const shortid = require('shortid')
+const u = require('@elife/utils');
+const shortid = require('shortid');
+const ssbKeys = require('ssb-keys')
+var bip39 = require("bip39");
+var chloride = require("chloride");
+var stellarWallet = require("stellar-hd-wallet");
+const mnemonic = require('ssb-keys-mnemonic');
+const ethers = require("ethers");
 
 /*      understand/
  * Main entry point for our program
  */
+
 function main() {
     let args = getArgs()
     if(args.help) showHelp()
@@ -21,10 +28,10 @@ function main() {
         setupEnvironmentVariables(args)
         setupHomeFolders()
         migrateOldData()
-        setupWallet()
         checkCoteConnection()
         showCotePartition()
         setupUserConfig()
+        setupKeys()
         startAvatar()
     }
 }
@@ -131,8 +138,6 @@ function generateDocs() {
  */
 function avatarStructure() {
     return [
-       
-
         { dir: "services" },
 
         { required: "services/elife-ai" },
@@ -149,7 +154,7 @@ function avatarStructure() {
         { required: "services/elife-communication-mgr" },
         { dir: "services/elife-communication-mgr/channels" },
         { required: "services/elife-communication-mgr/channels/elife-telegram" },
-       
+
 
         { required: "services/elife-skill-mgr" },
         { dir: "services/elife-skill-mgr/skills" },
@@ -275,28 +280,6 @@ function migrateOldData() {
     }
 }
 
-/*      outcome/
- * If we don't have a luminate password saved, get the user to add one
- * now.
- */
-function setupWallet() {
-    let p = path.join(u.dataLoc(), ".luminate-pw")
-    if(shell.test("-f", p)) return
-
-    let stellardir = "services/elife-stellar"
-    shell.echo(`
-===========================================================
-Please go to "${stellardir}" and run
-    node pw
-to set up your avatar's wallet password before you continue
-===========================================================
-`)
-    shell.exit(1)
-}
-
-/*      outcome/
- * Run the cote connection checker
- */
 function checkCoteConnection() {
     shell.exec(`node ccc`)
 }
@@ -439,8 +422,68 @@ function setupRepo(rp, postInstall) {
     return true
 }
 
+
+function generateKey(file) {
+    let ssbKeysMap = {}
+    const words=stellarWallet.generateMnemonic()
+    ssbKeysMap.mnemonic = words;
+
+    if (bip39.validateMnemonic(words)) {
+        const keys = mnemonic.wordsToKeys(words)
+        const wallet = stellarWallet.fromMnemonic(words)
+        const ewallet = ethers.Wallet.fromMnemonic(words)
+
+        ssbKeysMap = {
+            ...keys,
+            mnemonic: words,
+            stellar: {
+                 publicKey: wallet.getPublicKey(0),
+                secretKey: wallet.getSecret(0)
+            },
+            eth: {
+                address: ewallet.address,
+                publicKey: ewallet.publicKey,
+                privateKey: ewallet.privateKey,
+            }
+        };
+
+        const lines = [
+            "# this is your SECRET name.",
+            "# this name gives you magical powers.",
+            "# with it you can mark your messages so that your friends can verify",
+            "# that they really did come from you.",
+            "#",
+            "# if any one learns this name, they can use it to destroy your identity",
+            "# NEVER show this to anyone!!!",
+            "",
+            JSON.stringify(ssbKeysMap, null, 2),
+            "",
+            "# WARNING! It's vital that you DO NOT edit OR share your secret name",
+            "# instead, share your public name",
+            "# your public name: " + keys.id,
+        ].join("\n");
+
+        shell.ShellString(lines).to(file);
+    } else {
+        shell.echo(`ERROR: Some error occured while generating key`);
+    }
+}
+
+function setupKeys() {
+    let sbotFolder = path.join(u.dataLoc(), "__ssb");
+    shell.echo("checking for nucleus file in ", sbotFolder);
+    let nucleus = path.join(sbotFolder, 'nucleus');
+    if (shell.test('-f', nucleus)) {
+        shell.echo("file found.");
+        return;
+    } else {
+        shell.echo("generating keys");
+        generateKey(nucleus);
+    }
+}
+
 function startAvatar() {
     shell.exec(`npm start`)
 }
 
-main()
+main();
