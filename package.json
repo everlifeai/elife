@@ -14,9 +14,12 @@
     "@elife/pkg-mgr": "^4.1.0",
     "@elife/pm2": "^3.0.0",
     "@elife/utils": "^2.1.1",
+    "bip39": "^3.0.3",
+    "chloride": "^2.4.1",
     "command-line-args": "^5.1.1",
     "cote": "^0.17.0",
     "dotenv": "^6.1.0",
+    "ethers": "^5.1.0",
     "level": "^6.0.1",
     "log-timestamp": "^0.3.0",
     "nodegit": "^0.27.0",
@@ -24,6 +27,9 @@
     "shelljs": "^0.8.3",
     "shortid": "^2.2.13",
     "showdown": "^1.8.6",
-    "ssb-server": "^15.3.0"
+    "ssb-keys": "^8.0.2",
+    "ssb-keys-mnemonic": "^1.0.1",
+    "ssb-server": "^15.3.0",
+    "stellar-hd-wallet": "0.0.10"
   }
 }
