@@ -36,6 +36,7 @@
     "ssb-keys": "^8.1.0",
     "ssb-keys-mnemonic": "^1.0.1",
     "ssb-server": "^15.3.0",
-    "stellar-hd-wallet": "^0.0.10"
+    "stellar-hd-wallet": "^0.0.10",
+    "telegraf": "^4.3.0"
   }
 }
