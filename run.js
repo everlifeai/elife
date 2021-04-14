@@ -230,6 +230,7 @@ function partitionParam() {
  */
 function setupHomeFolders() {
     mkdir(u.dataLoc())
+    mkdir(u.ssbLoc())
     mkdir(u.skillLoc())
 }
 
