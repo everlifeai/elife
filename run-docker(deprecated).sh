@@ -34,7 +34,7 @@ function setup() {
     if [ -d qwert ]
     then
         cd qwert
-        yarn install
+        npm install
         cd ..
     else
         echo Failed to find QWERT
@@ -59,7 +59,7 @@ function update_node_deps() {
         then
             echo node_modules present so skipping...
         else
-            yarn install || exit 1
+            npm install || exit 1
         fi
 
         cd - > /dev/null 2>&1 || exit 1
@@ -71,7 +71,7 @@ function update_node_deps() {
 #
 function gui() {
     cd qwert || exit 1
-    yarn start
+    npm start
 }
 
 #       problem/
@@ -119,7 +119,7 @@ function setupDockerParams() {
 # We use Cote.js' `environment` parameter to partition the node's
 # services so that nodes will not interfere with each other.
 function setupPartitionParam() {
-    COTE_ENV=$(yarn -s part)
+    COTE_ENV=$(npm -s part)
 }
 
 function avatar() {
@@ -198,10 +198,10 @@ function stop() {
 # once the docker virtual machine has started up
 #
 #       outcome/
-# Start the node using yarn
+# Start the node using npm
 #
 function cnt_start_avatar() {
-    yarn start
+    npm start
 }
 
 function start_redis() {
@@ -283,7 +283,7 @@ function enter_running() {
 # Generate HTML documentation from Markdown
 #
 function docs() {
-    yarn docs
+    npm docs
 }
 
 #       outcome/

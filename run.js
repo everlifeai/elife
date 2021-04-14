@@ -21,7 +21,7 @@ function main() {
     else if(args['info']) showInfo()
     else if(args['gui']) launchGUI()
     else if(args['rm-node-modules']) removeNodeModules()
-    else if(args['rm-yarn-lock']) removeYarnLock()
+    else if(args['rm-package-lock']) removePackageLock()
     else if(args['gen-docs']) generateDocs()
     else {
         setupAvatarComponents()
@@ -42,7 +42,7 @@ function getArgs() {
         { name: 'gui', alias: 'g', type: Boolean },
         { name: 'info', alias: 'i', type: Boolean },
         { name: 'rm-node-modules', type: Boolean },
-        { name: 'rm-yarn-lock', type: Boolean },
+        { name: 'rm-package-lock', type: Boolean },
         { name: 'gen-docs', type: Boolean },
         { name: 'node-num', alias: 'n' },
     ]
@@ -58,7 +58,7 @@ function showHelp() {
 
 Also accepts the following options (usually for devs)
     --rm-node-modules   : Remove all node modules
-    --rm-yarn-lock      : Remove all yarn locks
+    --rm-package-lock   : Remove all package locks
 
     --node-num=x, -n x  : Start as node number 'x'
 
@@ -110,14 +110,14 @@ function removeNodeModules() {
     shell.echo(`Remember to remove './node_modules' manually (needed for this script to run)`)
 }
 
-function removeYarnLock() {
+function removePackageLock() {
     let structure = avatarStructure()
     for(let i = 0;i < structure.length;i++) {
         let loc
         if(structure[i].required) loc = structure[i].required
         if(structure[i].optional) loc = structure[i].optional
         if(loc) {
-            let yl = path.join(loc, 'yarn.lock')
+            let yl = path.join(loc, 'package-lock.json')
             if(shell.test("-f", yl)) {
                 shell.echo(`Removing ${yl}`)
                 let r = shell.rm(yl)
@@ -125,11 +125,11 @@ function removeYarnLock() {
             }
         }
     }
-    shell.rm('yarn.lock')
+    shell.rm('package-lock.json')
 }
 
 function generateDocs() {
-    shell.exec(`yarn docs`)
+    shell.exec(`npm docs`)
 }
 
 /*      outcome/
