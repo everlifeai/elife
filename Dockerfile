@@ -1,6 +1,10 @@
-FROM node:8.12.0-jessie
-RUN cd /root && \
-    wget http://download.redis.io/releases/redis-4.0.11.tar.gz && \
-    tar xzf redis-4.0.11.tar.gz && \
-    cd redis-4.0.11 && \
-    make
+FROM node:14.16.1
+
+EXPOSE 7766
+EXPOSE 8996
+EXPOSE 8997
+
+WORKDIR /elife
+COPY . .
+RUN npm install --production
+CMD ["npm", "start" ]
