@@ -23,7 +23,6 @@
     "archiver": "^5.3.0",
     "async": "^3.2.0",
     "bip39": "^3.0.3",
-    "chloride": "^2.4.1",
     "color-hash": "^1.0.3",
     "command-line-args": "^5.1.1",
     "compare-version": "^0.1.2",
