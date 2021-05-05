@@ -25,7 +25,6 @@ function main() {
     else if(args['gen-docs']) generateDocs()
     else {
         setupAvatarComponents()
-        fixAppKey()
         setupEnvironmentVariables(args)
         setupHomeFolders()
         migrateOldData()
@@ -186,15 +185,6 @@ function setupAvatarComponents() {
     }
 
     return true
-}
-
-
-function fixAppKey() {
-  let r = shell.exec("node fixAppKey")
-  if(r.code) {
-    shell.echo("Failed to run fixAppKey")
-    shell.exit(1)
-  }
 }
 
 
