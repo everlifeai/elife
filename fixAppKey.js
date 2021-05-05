@@ -9,7 +9,7 @@ function main() {
     let filelist = []
     console.log("Searching & fixing up Everlife App Key...")
     withJSFiles('node_modules', (err, file) => {
-        if(err) exitWithErr(err)
+        if(err && err.code !== 'ENOENT') exitWithErr(err)
         else if(!file) {
             replace_file_ndx_1(filelist, 0)
         } else filelist.push(file)
