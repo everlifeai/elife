@@ -195,7 +195,6 @@ function setupAvatarComponents() {
  */
 function setupEnvironmentVariables(args) {
     shell.env['ELIFE_INSTALL_FOLDER'] = shell.pwd()
-    shell.env['ELIFE_HOME'] = u.homeLoc()
     let nn = "0"
     if(args['node-num']) nn = args['node-num']
     if(isNaN(parseInt(nn))) {
@@ -204,6 +203,7 @@ function setupEnvironmentVariables(args) {
     }
     shell.env["ELIFE_NODE_NUM"] = nn
     shell.env['COTE_ENV'] = partitionParam()
+    shell.env['ELIFE_HOME'] = u.homeLoc()
 
     setup_port_vars_1()
 
