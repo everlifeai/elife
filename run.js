@@ -449,8 +449,8 @@ function generateKey(file) {
             ...keys,
             mnemonic: words,
             stellar: {
-                 publicKey: wallet.getPublicKey(0),
-                secretKey: wallet.getSecret(0)
+                publicKey: wallet.getPublicKey(0),
+                secretKey: wallet.getSecret(0),
             },
             eth: {
                 address: ewallet.address,
@@ -459,21 +459,19 @@ function generateKey(file) {
             }
         };
 
-        const lines = [
-            "# this is your SECRET name.",
-            "# this name gives you magical powers.",
-            "# with it you can mark your messages so that your friends can verify",
-            "# that they really did come from you.",
-            "#",
-            "# if any one learns this name, they can use it to destroy your identity",
-            "# NEVER show this to anyone!!!",
-            "",
-            JSON.stringify(ssbKeysMap, null, 2),
-            "",
-            "# WARNING! It's vital that you DO NOT edit OR share your secret name",
-            "# instead, share your public name",
-            "# your public name: " + keys.id,
-        ].join("\n");
+        const lines = `# These are your SECRET keys.",
+#
+# Any one who has access to these keys has access to
+# your avatar and wallets and can use it to steal from
+# you and destroy your identity.
+#
+# NEVER show this to anyone!!!
+
+${JSON.stringify(ssbKeysMap, null, 2)}
+
+# WARNING! It's vital that you DO NOT edit OR share your SECRET keys.
+# You can safely share your public name or any of the other public keys.
+# your public name: ${keys.id}`
 
         shell.ShellString(lines).to(file);
     } else {
