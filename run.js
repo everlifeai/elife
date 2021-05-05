@@ -5,11 +5,8 @@ const cla = require('command-line-args')
 const u = require('@elife/utils');
 const shortid = require('shortid');
 const ssbKeys = require('ssb-keys')
-var bip39 = require("bip39");
-var chloride = require("chloride");
-var stellarWallet = require("stellar-hd-wallet");
-const mnemonic = require('ssb-keys-mnemonic');
-const ethers = require("ethers");
+
+const secret_ = require('./secret.js')
 
 /*      understand/
  * Main entry point for our program
@@ -435,60 +432,17 @@ function setupRepo(rp, postInstall) {
 }
 
 
-function generateKey(file) {
-    let ssbKeysMap = {}
-    const words=stellarWallet.generateMnemonic()
-    ssbKeysMap.mnemonic = words;
-
-    if (bip39.validateMnemonic(words)) {
-        const keys = mnemonic.wordsToKeys(words)
-        const wallet = stellarWallet.fromMnemonic(words)
-        const ewallet = ethers.Wallet.fromMnemonic(words)
-
-        ssbKeysMap = {
-            ...keys,
-            mnemonic: words,
-            stellar: {
-                publicKey: wallet.getPublicKey(0),
-                secretKey: wallet.getSecret(0),
-            },
-            eth: {
-                address: ewallet.address,
-                publicKey: ewallet.publicKey,
-                privateKey: ewallet.privateKey,
-            }
-        };
-
-        const lines = `# These are your SECRET keys.",
-#
-# Any one who has access to these keys has access to
-# your avatar and wallets and can use it to steal from
-# you and destroy your identity.
-#
-# NEVER show this to anyone!!!
-
-${JSON.stringify(ssbKeysMap, null, 2)}
-
-# WARNING! It's vital that you DO NOT edit OR share your SECRET keys.
-# You can safely share your public name or any of the other public keys.
-# your public name: ${keys.id}`
-
-        shell.ShellString(lines).to(file);
-    } else {
-        shell.echo(`ERROR: Some error occured while generating key`);
-    }
-}
-
-function setupKeys() {
-    let sbotFolder = path.join(u.dataLoc(), "__ssb");
-    shell.echo("checking for secret file in ", sbotFolder);
-    if (shell.test('-f', u.secretFile())) {
-        shell.echo("file found.");
-        return;
-    } else {
-        shell.echo("generating keys");
-        generateKey(u.secretFile());
-    }
+function setupKeys(cb) {
+    if (shell.test('-f', u.secretFile())) return cb()
+    shell.echo("Generating Keys");
+    secret_.create(err => {
+        if(err) {
+            shell.echo(err)
+            shell.echo('Failed to generate keys')
+            shell.exit(1)
+        }
+        cb()
+    })
 }
 
 function startAvatar() {
