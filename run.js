@@ -25,6 +25,7 @@ function main() {
     else if(args['gen-docs']) generateDocs()
     else {
         setupAvatarComponents()
+        fixAppKey()
         setupEnvironmentVariables(args)
         setupHomeFolders()
         migrateOldData()
@@ -149,7 +150,7 @@ function avatarStructure() {
 
         { required: "services/elife-stellar" },
 
-        { required: "services/elife-sbot", postInstall: "node fixAppKey" },
+        { required: "services/elife-sbot" },
 
         { required: "services/elife-communication-mgr" },
         { dir: "services/elife-communication-mgr/channels" },
@@ -185,6 +186,15 @@ function setupAvatarComponents() {
     }
 
     return true
+}
+
+
+function fixAppKey() {
+  let r = shell.exec("node fixAppKey")
+  if(r.code) {
+    shell.echo("Failed to run fixAppKey")
+    shell.exit(1)
+  }
 }
 
 
