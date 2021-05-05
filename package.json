@@ -14,6 +14,7 @@
     "@elife/pkg-mgr": "^5.3.0",
     "@elife/pm2": "^3.5.1",
     "@elife/utils": "^4.0.0",
+    "@polkadot/api": "^4.8.1",
     "@tpp/luminate": "^4.1.2",
     "app-root-path": "^3.0.0",
     "archieml": "^0.4.2",
