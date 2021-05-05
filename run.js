@@ -204,6 +204,16 @@ function setupEnvironmentVariables(args) {
     }
     shell.env["ELIFE_NODE_NUM"] = nn
     shell.env['COTE_ENV'] = partitionParam()
+
+    setup_port_vars_1()
+
+    function setup_port_vars_1() {
+        process.env["SSB_PORT"]         = u.adjustPort(8191)
+        process.env["SSB_WS_PORT"]      = u.adjustPort(8192)
+        process.env["QWERT_PORT"]       = u.adjustPort(8193)
+        process.env["EBRAIN_AIML_PORT"] = u.adjustPort(8194)
+        process.env["AIARTIST_PORT"]    = u.adjustPort(8195)
+    }
 }
 
 /*      understand/
