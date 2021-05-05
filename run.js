@@ -6,7 +6,7 @@ const u = require('@elife/utils');
 const shortid = require('shortid');
 const ssbKeys = require('ssb-keys')
 
-const secret_ = require('./secret.js')
+const secret_ = require('@elife/secret')
 
 /*      understand/
  * Main entry point for our program
@@ -28,8 +28,7 @@ function main() {
         checkCoteConnection()
         showCotePartition()
         setupUserConfig()
-        setupKeys()
-        startAvatar()
+        setupKeys(startAvatar)
     }
 }
 
