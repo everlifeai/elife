@@ -89,8 +89,10 @@ function startCoreProcesses(cfg) {
     })
 
     function load_pkgs_1(ndx, cb) {
-        if(core_procs.length <= ndx) cb()
-        else pkgmgr.load(core_procs[ndx].pkg, cfg.SVC_FOLDER, (err, loc) => {
+        if(core_procs.length <= ndx) return cb()
+        let pkg = core_procs[ndx].pkg
+        u.showMsg(`Loading ${pkg}...`)
+        pkgmgr.load(pkg, cfg.SVC_FOLDER, (err, loc) => {
             if(err) cb(err)
             else {
                 core_procs[ndx].loc = loc
@@ -107,8 +109,10 @@ function startCoreProcesses(cfg) {
     }
 
     function start_procs_1(ndx, cb) {
-        if(core_procs.length <= ndx) cb()
-        else startProcess(cfg, core_procs[ndx].loc, (err) => {
+        if(core_procs.length <= ndx) return cb()
+        let loc = core_procs[ndx].loc
+        u.showMsg(`Starting ${loc}...`)
+        startProcess(cfg, loc, (err) => {
             if(err) cb(err)
             else start_procs_1(ndx+1, cb)
         })
