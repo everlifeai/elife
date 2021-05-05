@@ -473,14 +473,13 @@ function generateKey(file) {
 
 function setupKeys() {
     let sbotFolder = path.join(u.dataLoc(), "__ssb");
-    shell.echo("checking for nucleus file in ", sbotFolder);
-    let nucleus = path.join(sbotFolder, 'nucleus');
-    if (shell.test('-f', nucleus)) {
+    shell.echo("checking for secret file in ", sbotFolder);
+    if (shell.test('-f', u.secretFile())) {
         shell.echo("file found.");
         return;
     } else {
         shell.echo("generating keys");
-        generateKey(nucleus);
+        generateKey(u.secretFile());
     }
 }
 
