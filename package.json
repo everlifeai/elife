@@ -58,6 +58,7 @@
     "moment-timezone": "^0.5.28",
     "mutant": "^3.29.0",
     "mutant-pull-reduce": "^1.1.0",
+    "muxrpcli": "^3.1.2",
     "node-emoji": "^1.10.0",
     "noto-color-emoji": "^1.0.1",
     "patch-settings": "^1.1.2",

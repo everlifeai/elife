@@ -8,11 +8,14 @@ const ssbKeys = require('ssb-keys')
 
 const secret_ = require('@elife/secret')
 
+const client = require('./client.js')
+
 /*      understand/
  * Main entry point for our program
  */
 
 function main() {
+    if(process.argv[2] == 'do') return clientDo()
     let args = getArgs()
     if(args.help) showHelp()
     else if(args['info']) showInfo()
@@ -41,6 +44,7 @@ function getArgs() {
         { name: 'rm-package-lock', type: Boolean },
         { name: 'gen-docs', type: Boolean },
         { name: 'node-num', alias: 'n' },
+        { name: 'do', alias: 'd', type: String, multiple: true },
     ]
 
     return cla(ops)
@@ -447,5 +451,22 @@ function setupKeys(cb) {
 function startAvatar() {
     shell.exec(`npm start`)
 }
+
+function clientDo() {
+    let argv = process.argv.slice(3)
+    let nn = { "node-num": "0" }
+    let args = []
+    for(let i = 0;i < argv.length;i++) {
+        if(argv[i] == '-n' || argv[i] == '--node-num') {
+            i++
+            nn["node-num"] = argv[i]
+            continue
+        }
+        args.push(argv[i])
+    }
+    setupEnvironmentVariables(nn)
+    client.do_(args)
+}
+
 
 main();
