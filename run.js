@@ -168,6 +168,7 @@ function avatarStructure() {
         { optional: "services/elife-skill-mgr/skills/eskill-direct-message" },
         { optional: "services/elife-skill-mgr/skills/eskill-ai-artist" },
         { optional: "services/elife-skill-mgr/skills/eskill-coupon" },
+        { optional: "services/elife-skill-mgr/skills/eskill-path-payment" },
     ]
 }
 
