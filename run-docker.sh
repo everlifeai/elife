@@ -10,11 +10,11 @@ then
   exit
 fi
 
-if [ -z "$1" ]
+if [ -z "$ELIFE_NODE_NUM" ]
 then
   NUM="0"
 else
-  NUM="$1"
+  NUM="$ELIFE_NODE_NUM"
 fi
 
 shift

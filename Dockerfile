@@ -11,4 +11,4 @@ EXPOSE 8997
 WORKDIR /elife
 COPY . .
 RUN npm install
-CMD ["node", "run.js" ]
+CMD ["/bin/bash", "./run-linux.sh"]
