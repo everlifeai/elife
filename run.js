@@ -197,6 +197,7 @@ function setupAvatarComponents() {
 function setupEnvironmentVariables(args) {
     shell.env['ELIFE_INSTALL_FOLDER'] = shell.pwd()
     let nn = "0"
+    if(shell.env['ELIFE_NODE_NUM']) nn = shell.env['ELIFE_NODE_NUM']
     if(args['node-num']) nn = args['node-num']
     if(isNaN(parseInt(nn))) {
         shell.echo(`node-num ${nn} is not a valid integer`)

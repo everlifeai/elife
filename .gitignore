@@ -5,4 +5,5 @@ node_modules/
 services/
 logs/
 qwert/
+everlifeai/
 *.rdb

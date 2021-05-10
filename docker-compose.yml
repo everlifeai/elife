@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  node1:
+    image: elife-docker:latest
+    volumes:
+      - ./everlifeai:/root/everlifeai
+    environment:
+      - ELIFE_NODE_NUM=5
+  node2:
+    image: elife-docker:latest
+    depends_on:
+      - node1
+    volumes:
+      - ./everlifeai:/root/everlifeai
+    environment:
+      - ELIFE_NODE_NUM=6
