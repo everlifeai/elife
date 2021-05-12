@@ -1,17 +1,15 @@
 version: "3.9"
 services:
-  node1:
+  buyer:
     image: elife-docker:latest
     volumes:
       - ./everlifeai:/root/everlifeai
       - ./logs/buyer:/elife/logs
     environment:
       - ELIFE_NODE_NUM=5
-  node2:
       - ELIFE_STELLAR_HORIZON=test
+  seller:
     image: elife-docker:latest
-    depends_on:
-      - node1
     volumes:
       - ./everlifeai:/root/everlifeai
       - ./logs/seller:/elife/logs
