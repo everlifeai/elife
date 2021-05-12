@@ -4,6 +4,7 @@ services:
     image: elife-docker:latest
     volumes:
       - ./everlifeai:/root/everlifeai
+      - ./logs/buyer:/elife/logs
     environment:
       - ELIFE_NODE_NUM=5
   node2:
@@ -12,5 +13,6 @@ services:
       - node1
     volumes:
       - ./everlifeai:/root/everlifeai
+      - ./logs/seller:/elife/logs
     environment:
       - ELIFE_NODE_NUM=6
