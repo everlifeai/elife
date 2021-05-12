@@ -8,6 +8,7 @@ services:
     environment:
       - ELIFE_NODE_NUM=5
   node2:
+      - ELIFE_STELLAR_HORIZON=test
     image: elife-docker:latest
     depends_on:
       - node1
@@ -16,3 +17,4 @@ services:
       - ./logs/seller:/elife/logs
     environment:
       - ELIFE_NODE_NUM=6
+      - ELIFE_STELLAR_HORIZON=test
