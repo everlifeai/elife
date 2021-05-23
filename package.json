@@ -1,6 +1,6 @@
 {
   "name": "everlife-server-node",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A Everlife Avatar Node",
   "main": "index.js",
   "author": "charles.lobo@gmail.com",
