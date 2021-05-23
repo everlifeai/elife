@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Managing Your Everlife Avatar</title>
+<title>Setting up the Everlife Avatar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="github-markdown.css">
 <style>
@@ -29,56 +29,64 @@
 <meta charset="utf-8">
 </head>
 <body>
-<h1 id="managing-your-everlife-avatar">Managing Your Everlife Avatar</h1>
-<p>This document contains instructions for setting up and running your
-<strong>Everlife</strong> avatar on your own machines.</p>
+<h1 id="setting-up-the-everlife-avatar">Setting up the Everlife Avatar</h1>
+<p>This document contains instructions for setting up and running the
+<strong>Everlife</strong> avatar on a server machine.</p>
 <p><img src="avatar_256x256.png" alt="Avatar" /></p>
-<h2 id="pre-requisites">Pre-requisites</h2>
+<p>You can, of course, install the node on your desktop if you like. If you would like a GUI version that you can just install you probably should look at <a href="https://github.com/everlifeai/everlife-node-releases/releases/">the community node edition</a>.</p>
+<p>The advantage of the server version is that it is optimised for running on a VPS on the cloud and can be customised more easily than the packaged community node.</p>
+<h2 id="docker">Docker</h2>
+<p>One option for installation is to use <a href="https://www.docker.com">Docker</a>. If you are comfortable using Docker you do not need to install the other pre-requisites like NodeJS and Python as the container is already set up with everything you need.</p>
+<h3 id="docker-install-steps">Docker Install Steps</h3>
 <ol>
-<li>Install <a href="https://www.python.org/">Python 2.7</a></li>
+<li>Install <a href="https://www.docker.com">Docker</a></li>
+<li>Run <code>./build-docker.sh</code> to create the <code>elife-docker</code> image</li>
+<li>Run <code>./run-docker.sh</code></li>
 </ol>
-<h3 id="additional-windows-pre-requisities">Additional Windows Pre-requisities</h3>
+<h2 id="mac-setup">Mac Setup</h2>
+<p>Installing on your Mac is simple. You can use a package manager like <a href="https://brew.sh">Homebrew</a> to simplify the package installs.</p>
+<ol>
+<li>Install <a href="https://nodejs.org/en/download/">NodeJS</a> LTS Version: 14.16.0 and above</li>
+<li>Install <a href="https://www.python.org/">Python 2.7</a></li>
+<li>Run <code>./run-mac.sh</code></li>
+</ol>
+<h2 id="linux-setup">Linux Setup</h2>
+<p>Setting up on any *-nix machine is simple as well. Use the built in package manager to install the required packages (<code>yum install</code> or <code>apt-get</code>).</p>
+<ol>
+<li>Install <a href="https://nodejs.org/en/download/">NodeJS</a> LTS Version: 14.16.0 and above</li>
+<li>Install <a href="https://www.python.org/">Python 2.7</a></li>
+<li>Run <code>./run-linux.sh</code></li>
+</ol>
+<h2 id="windows-setup">Windows Setup</h2>
+<p>Installing on windows requires a bit more setup as we need to set up some *-nix like tools. The simple way to do this is to install a <a href="https://www.cygwin.com">Cygwin distribution</a>.</p>
 <ol>
 <li>Install Cygwin: <a href="https://www.cygwin.com/setup-x86_64.exe">64 Bit Version</a> or
 <a href="https://www.cygwin.com/setup-x86.exe">32 Bit Version</a></li>
+<li>Install <a href="https://nodejs.org/en/download/">NodeJS</a> LTS Version: 14.16.0 and above</li>
+<li>Install <a href="https://www.python.org/">Python 2.7</a></li>
+<li>Run <code>./run-win.cmd</code></li>
 </ol>
-<h2 id="setup">Setup</h2>
-<p>There are three run scripts: (<code>./run-mac.sh</code>, <code>./run-linux.sh</code>,
-<code>run-win.cmd</code>). Pick the one appropriate to your platform and use it:</p>
-<pre><code>    $&gt; ./run-mac.sh</code></pre>
-<p>The first time it runs it will set up your environment for you.</p>
-<h2 id="talking-over-the-built-in-chatbot-qwert">Talking over the built-in chatbot (QWERT)</h2>
-<p>Your Avatar comes with a built-in chatbot with the strange name of
-QWERT. To start it simply run:</p>
-<pre><code>    $&gt; ./run-mac.sh --gui   (or ./run-mac.sh -g)</code></pre>
-<h2 id="talking-over-telegram">Talking over Telegram</h2>
-<p>In order to talk with your avatar over <a href="the://telegram.org">Telegram</a>
-you only need to set up communication channel with it. The steps
-for doing this are as follows:</p>
+<h2 id="configuration">Configuration</h2>
+<p>Your environment, data, and configuration is created under the <code>$HOME/everlife</code> folder. Here you will find your blockchain, wallets, configuration, and so on.</p>
+<p>The first time you run, this folder will be set up for you.</p>
+<h2 id="talking-to-your-new-bot-over-telegram">Talking to your new bot over Telegram</h2>
+<p>In order to talk with your avatar over <a href="the://telegram.org">Telegram</a> you need to set up a communication channel with it. The steps for doing this are as follows:</p>
 <ol>
-<li><p>Go to <a href="https://telegram.me/botfather">Telegram</a> to create a bot by
-typing</p>
+<li><p>Go to <a href="https://telegram.me/botfather">Telegram</a> to create a bot by typing the</p>
 <p><code>/newbot</code></p>
 <p>command to create your telegram bot.</p></li>
-<li><p>The BotFather will ask you for a name and username, then generate an
-authorization token for your new bot. The token is a string along the
-lines of 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw. </p></li>
-<li><p>We now need to link this new telegram bot with your avatar. To do
-this, simply save the telegram token in <code>$YOUR_DATA_FOLDER/cfg.env</code></p></li>
+<li><p>The BotFather will ask you for a name and username, then generate an authorization token for your new bot. The token is a string that looks something like <code>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</code> .</p></li>
+<li><p>Link this new telegram bot with your avatar. To do this, simply save the telegram token in the <code>cfg.env</code> file located in the <code>data</code> folder somewhere under <code>$HOME/everlife</code>.</p>
+<p>(To find the exact location of your data folder you can check the logs or pass the <code>--info</code> parameter to the run script. For example (<code>./run-mac.sh —info</code>).</p></li>
 </ol>
-<h2 id="your-data-folder">Your Data Folder</h2>
-<p>In order to find your data folder simply run:</p>
-<pre><code>    $&gt; ./run-mac.sh --info</code></pre>
 <h2 id="next-steps">Next steps</h2>
 <ol>
-<li><p>Join the Everlife network through an <strong>Avatar Hub</strong>.Contact our
-support channel in discord to get your invite code to join the hub
-and inform your avatar that you would like to join this Avatar Hub by
-saying</p>
+<li><p>You should now join the Everlife network through an <strong>Avatar Hub</strong>. Contact our support channel in discord to get your invite code to join the hub and inform your avatar that you would like to join this Avatar Hub by saying</p>
 <pre><code>/use_invite xxxx</code></pre></li>
 <li><p>Install and try out various skills</p>
 <pre><code>"install calculator"
 "install what-wine"</code></pre></li>
+<li><p>Do some work and earn EVER, or buy and NFT asset, or play some game, or develop your own skills. The sky’s the limit. Enjoy!</p></li>
 </ol>
 <p>Feel free to provide us your feedback and issues in our <a href="https://discord.gg/TDyRSr4">discord support
 channel</a>.</p>
