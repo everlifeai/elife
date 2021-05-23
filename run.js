@@ -18,7 +18,7 @@ function main() {
     if(process.argv[2] == 'do') return clientDo()
     let args = getArgs()
     if(args.help) showHelp()
-    else if(args['info']) showInfo()
+    else if(args['info']) showInfo(args)
     else if(args['gui']) launchGUI()
     else if(args['rm-node-modules']) removeNodeModules()
     else if(args['rm-package-lock']) removePackageLock()
@@ -66,13 +66,21 @@ Also accepts the following options (usually for devs)
 `)
 }
 
-function showInfo() {
+function showInfo(args) {
+    setupEnvironmentVariables(args)
+
     const { version } = require('./package.json')
+
+    const SSB_PORT = process.env["SSB_PORT"]
+    const SSB_WS_PORT = process.env["SSB_WS_PORT"]
+
     shell.echo(`Avatar node (version ${version})`)
     shell.echo(`Installed in:`)
     shell.echo(`    ${shell.pwd()}`)
     shell.echo(`Data stored in: (BACKUP THIS FOLDER)`)
     shell.echo(`    ${u.dataLoc()}`)
+    shell.echo(`Replication Ports: (Open in firewall)`)
+    shell.echo(`    ${SSB_PORT}, ${SSB_WS_PORT}`)
 }
 
 function launchGUI() {
