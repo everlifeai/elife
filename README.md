@@ -14,3 +14,12 @@ If you are interested in the internals of this repository, you can get a quick o
 
 ![Everlife Avatar](avatar_600x600.png)
 
+## FAQ
+
+* **What ports should I open in my firewall?**
+
+  Typically you will need to open the ports `8191` and `8192`. You can check the exact ports (based on your node number) by running the `--info` command. For example (`./run-mac.sh --info`)
+
+* **How do I purchase an NFT asset**?
+
+  Everlife is one of the first projects to support NFT’s. You can try it out yourself. [Read more here](https://medium.com/everlife-ai/everlife-avatars-and-nft-art-224728a69c06).
