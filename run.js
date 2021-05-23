@@ -23,6 +23,7 @@ function main() {
     else if(args['rm-node-modules']) removeNodeModules()
     else if(args['rm-package-lock']) removePackageLock()
     else if(args['gen-docs']) generateDocs()
+    else if(args['docker-port-param']) dockerPortCmd(args)
     else {
         setupAvatarComponents()
         setupEnvironmentVariables(args)
@@ -44,6 +45,7 @@ function getArgs() {
         { name: 'rm-package-lock', type: Boolean },
         { name: 'gen-docs', type: Boolean },
         { name: 'node-num', alias: 'n' },
+        { name: 'docker-port-param', type: Boolean },
         { name: 'do', alias: 'd', type: String, multiple: true },
     ]
 
@@ -138,6 +140,20 @@ function removePackageLock() {
 
 function generateDocs() {
     shell.exec(`npm run docs`)
+}
+
+/*    problem/
+ * we need the docker container to expose the SSB ports
+ * which could be dynamically set based on the node number
+ *    way/
+ * we get the port numbers then create a docker `-p` parameter
+ * to expose the ports
+ */
+function dockerPortCmd(args) {
+  setupEnvironmentVariables(args)
+  const SSB_PORT = process.env["SSB_PORT"]
+  const SSB_WS_PORT = process.env["SSB_WS_PORT"]
+  shell.echo(`-p ${SSB_PORT}:${SSB_PORT} -p ${SSB_WS_PORT}:${SSB_WS_PORT}`)
 }
 
 /*      outcome/
