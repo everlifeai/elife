@@ -22,4 +22,4 @@ If you are interested in the internals of this repository, you can get a quick o
 
 * **How do I purchase an NFT asset**?
 
-  Everlife is one of the first projects to support NFT’s. You can try it out yourself. [Read more here](https://medium.com/everlife-ai/everlife-avatars-and-nft-art-224728a69c06).
+  Everlife is one of the first projects to support NFT’s. You can try it out yourself. [Watch this short video to know more](https://fb.watch/5tSQtbVuFI/).
