@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   buyer:
-    image: elife-docker:latest
+    image: everlife-server-node:latest
     volumes:
       - ./everlifeai:/root/everlifeai
       - ./logs/buyer:/elife/logs
@@ -9,7 +9,7 @@ services:
       - ELIFE_NODE_NUM=5
       - ELIFE_STELLAR_HORIZON=test
   seller:
-    image: elife-docker:latest
+    image: everlife-server-node:latest
     volumes:
       - ./everlifeai:/root/everlifeai
       - ./logs/seller:/elife/logs

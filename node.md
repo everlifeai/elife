@@ -16,8 +16,7 @@ One option for installation is to use [Docker](https://www.docker.com). If you a
 ### Docker Install Steps
 
 1. Install [Docker](https://www.docker.com)
-2. Run `./build-docker.sh` to create the `elife-docker` image
-3. Run `./run-docker.sh`
+2. Run `./run-docker.sh`
 
 ## Mac Setup
 
