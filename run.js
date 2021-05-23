@@ -137,7 +137,7 @@ function removePackageLock() {
 }
 
 function generateDocs() {
-    shell.exec(`npm docs`)
+    shell.exec(`npm run docs`)
 }
 
 /*      outcome/
